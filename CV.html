@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260811-05-f555caa","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amirhossein Noori Fard</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+        :root {
+            --accent: #C9A96E;
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #111113;
+            --text-primary: #F5F5F4;
+            --text-secondary: #A1A1AA;
+            --border: #1F1F23;
+        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); }
+        .font-display { font-family: 'Playfair Display', serif; }
+        .accent { color: var(--accent); }
+        .border-subtle { border-color: var(--border); }
+        .bg-card { background: var(--bg-secondary); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .project-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+        .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; }
+        .skill-tag { background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.2); color: var(--text-primary); padding: 6px 14px; border-radius: 4px; font-size: 13px; transition: all 0.3s; }
+        .skill-tag:hover { background: rgba(201,169,110,0.15); border-color: var(--accent); }
+        .timeline-line { position: absolute; left: 7px; top: 24px; bottom: 0; width: 1px; background: var(--border); }
+        .hero-line { width: 60px; height: 1px; background: var(--accent); }
+        @media (max-width: 768px) {
+            .hero-name { font-size: 2.5rem !important; }
+        }
+    </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full min-h-screen grid-bg"><!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0A0A0B]/80 border-b border-subtle">
+   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"><a href="#" class="text-lg font-semibold tracking-tight">ANF</a>
+    <div class="hidden md:flex items-center gap-8"><a href="#about" class="nav-link text-sm text-zinc-400 hover:text-white transition">About</a> <a href="#work" class="nav-link text-sm text-zinc-400 hover:text-white transition">Work</a> <a href="#experience" class="nav-link text-sm text-zinc-400 hover:text-white transition">Experience</a> <a href="#skills" class="nav-link text-sm text-zinc-400 hover:text-white transition">Skills</a> <a href="#contact" class="nav-link text-sm text-zinc-400 hover:text-white transition">Contact</a> <a data-template-id="nav-cv-btn" class="canva-button text-xs px-4 py-2 border border-[#C9A96E] text-[#C9A96E] rounded hover:bg-[#C9A96E] hover:text-black transition" href="#"></a>
+    </div><button id="mobile-menu-btn" class="md:hidden text-white" aria-label="Open menu"> <i data-lucide="menu" style="width:24px;height:24px"></i> </button>
+   </div>
+   <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3"><a href="#about" class="block text-sm text-zinc-400">About</a> <a href="#work" class="block text-sm text-zinc-400">Work</a> <a href="#experience" class="block text-sm text-zinc-400">Experience</a> <a href="#skills" class="block text-sm text-zinc-400">Skills</a> <a href="#contact" class="block text-sm text-zinc-400">Contact</a>
+   </div>
+  </nav><!-- Hero -->
+  <header class="min-h-screen flex items-center pt-20 pb-16">
+   <div class="max-w-7xl mx-auto px-6 w-full">
+    <div class="reveal">
+     <div class="hero-line mb-8"></div>
+     <h1 class="hero-name font-display font-bold text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tight mb-2"><span data-template-id="hero-firstname" class="canva-text block"></span> <span data-template-id="hero-lastname" class="canva-text block accent"></span></h1>
+    </div>
+    <div class="reveal reveal-delay-1 mt-8 max-w-2xl">
+     <p data-template-id="hero-tagline" class="canva-text text-xl md:text-2xl text-zinc-300 font-light leading-relaxed"></p>
+    </div>
+    <div class="reveal reveal-delay-2 mt-6 max-w-xl">
+     <p data-template-id="hero-description" class="canva-text text-sm text-zinc-500 leading-relaxed"></p>
+    </div>
+    <div class="reveal reveal-delay-3 mt-10 flex flex-wrap gap-4"><a href="#work" data-template-id="hero-cta-work" class="canva-button px-6 py-3 bg-[#C9A96E] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition"></a> <a href="#" data-template-id="hero-cta-resume" class="canva-button px-6 py-3 border border-zinc-600 text-white font-medium text-sm rounded hover:border-zinc-400 transition"></a>
+    </div>
+    <div class="reveal reveal-delay-4 mt-12 flex gap-6"><a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-[#C9A96E] transition" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:18px;height:18px"></i></a> <a href="#" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-[#C9A96E] transition" aria-label="GitHub"><i data-lucide="github" style="width:18px;height:18px"></i></a> <a href="#" class="text-zinc-500 hover:text-[#C9A96E] transition" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px"></i></a>
+    </div>
+   </div>
+  </header><!-- About -->
+  <section id="about" class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-12"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">01</span>
+     <h2 data-template-id="about-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-16">
+     <div class="reveal reveal-delay-1 space-y-6">
+      <p data-template-id="about-p1" class="canva-text text-zinc-400 leading-relaxed"></p>
+      <p data-template-id="about-p2" class="canva-text text-zinc-400 leading-relaxed"></p>
+      <p data-template-id="about-p3" class="canva-text text-zinc-400 leading-relaxed"></p>
+     </div>
+     <div class="reveal reveal-delay-2">
+      <h3 data-template-id="about-timeline-heading" class="canva-text text-sm uppercase tracking-widest text-zinc-500 mb-8"></h3>
+      <div class="space-y-6 relative">
+       <div class="timeline-line"></div>
+       <div class="pl-8 relative">
+        <div class="absolute left-0 top-2 w-[14px] h-[14px] rounded-full border-2 border-[#C9A96E] bg-[#0A0A0B]"></div>
+        <p data-template-id="timeline-1" class="canva-text text-sm text-zinc-300"></p>
+       </div>
+       <div class="pl-8 relative">
+        <div class="absolute left-0 top-2 w-[14px] h-[14px] rounded-full border-2 border-[#C9A96E] bg-[#0A0A0B]"></div>
+        <p data-template-id="timeline-2" class="canva-text text-sm text-zinc-300"></p>
+       </div>
+       <div class="pl-8 relative">
+        <div class="absolute left-0 top-2 w-[14px] h-[14px] rounded-full border-2 border-[#C9A96E] bg-[#0A0A0B]"></div>
+        <p data-template-id="timeline-3" class="canva-text text-sm text-zinc-300"></p>
+       </div>
+       <div class="pl-8 relative">
+        <div class="absolute left-0 top-2 w-[14px] h-[14px] rounded-full border-2 border-[#C9A96E] bg-[#0A0A0B]"></div>
+        <p data-template-id="timeline-4" class="canva-text text-sm text-zinc-300"></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Selected Work -->
+  <section id="work" class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-16"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">02</span>
+     <h2 data-template-id="work-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div><!-- DATAVEST Featured -->
+    <div class="reveal mb-20 bg-card rounded-lg border border-subtle overflow-hidden">
+     <div class="grid lg:grid-cols-2">
+      <div class="p-8 md:p-12 flex flex-col justify-center"><span class="text-xs text-[#C9A96E] tracking-widest uppercase mb-4">Featured Case Study</span>
+       <h3 data-template-id="datavest-title" class="canva-text font-display text-3xl md:text-4xl font-bold mb-4"></h3>
+       <p data-template-id="datavest-subtitle" class="canva-text text-zinc-400 mb-6 leading-relaxed"></p>
+       <div class="space-y-4 mb-8">
+        <div><span class="text-xs text-[#C9A96E] uppercase tracking-wider">Problem</span>
+         <p data-template-id="datavest-problem" class="canva-text text-sm text-zinc-300 mt-1"></p>
+        </div>
+        <div><span class="text-xs text-[#C9A96E] uppercase tracking-wider">Solution</span>
+         <p data-template-id="datavest-solution" class="canva-text text-sm text-zinc-300 mt-1"></p>
+        </div>
+        <div><span class="text-xs text-[#C9A96E] uppercase tracking-wider">Technology</span>
+         <p data-template-id="datavest-tech" class="canva-text text-sm text-zinc-300 mt-1"></p>
+        </div>
+        <div><span class="text-xs text-[#C9A96E] uppercase tracking-wider">Impact</span>
+         <p data-template-id="datavest-impact" class="canva-text text-sm text-zinc-300 mt-1"></p>
+        </div>
+       </div>
+      </div>
+      <div class="relative min-h-[300px] lg:min-h-0"><img data-template-id="datavest-image" class="canva-image w-full h-full object-cover" loading="lazy">
+      </div>
+     </div>
+    </div><!-- Other Projects Grid -->
+    <div class="grid md:grid-cols-2 gap-6"><!-- Market Intelligence -->
+     <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
+      <div class="relative h-48"><img data-template-id="project-market-image" class="canva-image w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6"><span class="text-xs text-[#C9A96E] tracking-wider uppercase">02</span>
+       <h3 data-template-id="project-market-title" class="canva-text font-display text-xl font-semibold mt-2 mb-2"></h3>
+       <p data-template-id="project-market-desc" class="canva-text text-sm text-zinc-400 leading-relaxed"></p>
+       <p data-template-id="project-market-tech" class="canva-text text-xs text-zinc-500 mt-4"></p>
+      </div>
+     </div><!-- Dashboards -->
+     <div class="reveal reveal-delay-1 project-card bg-card rounded-lg border border-subtle overflow-hidden">
+      <div class="relative h-48"><img data-template-id="project-dashboard-image" class="canva-image w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6"><span class="text-xs text-[#C9A96E] tracking-wider uppercase">03</span>
+       <h3 data-template-id="project-dashboard-title" class="canva-text font-display text-xl font-semibold mt-2 mb-2"></h3>
+       <p data-template-id="project-dashboard-desc" class="canva-text text-sm text-zinc-400 leading-relaxed"></p>
+       <p data-template-id="project-dashboard-tech" class="canva-text text-xs text-zinc-500 mt-4"></p>
+      </div>
+     </div><!-- Automation -->
+     <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
+      <div class="relative h-48"><img data-template-id="project-automation-image" class="canva-image w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6"><span class="text-xs text-[#C9A96E] tracking-wider uppercase">04</span>
+       <h3 data-template-id="project-automation-title" class="canva-text font-display text-xl font-semibold mt-2 mb-2"></h3>
+       <p data-template-id="project-automation-desc" class="canva-text text-sm text-zinc-400 leading-relaxed"></p>
+       <p data-template-id="project-automation-tech" class="canva-text text-xs text-zinc-500 mt-4"></p>
+      </div>
+     </div><!-- AI/ML -->
+     <div class="reveal reveal-delay-1 project-card bg-card rounded-lg border border-subtle overflow-hidden">
+      <div class="relative h-48"><img data-template-id="project-ai-image" class="canva-image w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6"><span class="text-xs text-[#C9A96E] tracking-wider uppercase">05</span>
+       <h3 data-template-id="project-ai-title" class="canva-text font-display text-xl font-semibold mt-2 mb-2"></h3>
+       <p data-template-id="project-ai-desc" class="canva-text text-sm text-zinc-400 leading-relaxed"></p>
+       <p data-template-id="project-ai-tech" class="canva-text text-xs text-zinc-500 mt-4"></p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Skills -->
+  <section id="skills" class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-16"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">03</span>
+     <h2 data-template-id="skills-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+     <div class="reveal">
+      <h3 data-template-id="skills-data-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">Python</span><span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">Data Analysis</span><span class="skill-tag">Data Cleaning</span><span class="skill-tag">Data Visualization</span>
+      </div>
+     </div>
+     <div class="reveal reveal-delay-1">
+      <h3 data-template-id="skills-db-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQL</span><span class="skill-tag">Database Design</span><span class="skill-tag">Data Pipelines</span>
+      </div>
+     </div>
+     <div class="reveal reveal-delay-2">
+      <h3 data-template-id="skills-ai-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">Machine Learning</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">Predictive Modeling</span><span class="skill-tag">Feature Engineering</span>
+      </div>
+     </div>
+     <div class="reveal">
+      <h3 data-template-id="skills-finance-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">Financial Markets</span><span class="skill-tag">Quantitative Finance</span><span class="skill-tag">Portfolio Analysis</span><span class="skill-tag">ETF Analysis</span><span class="skill-tag">Market Data</span>
+      </div>
+     </div>
+     <div class="reveal reveal-delay-1">
+      <h3 data-template-id="skills-product-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">FinTech</span><span class="skill-tag">Product Development</span><span class="skill-tag">Business Intelligence</span><span class="skill-tag">Entrepreneurship</span>
+      </div>
+     </div>
+     <div class="reveal reveal-delay-2">
+      <h3 data-template-id="skills-tools-heading" class="canva-text text-sm uppercase tracking-widest text-[#C9A96E] mb-4"></h3>
+      <div class="flex flex-wrap gap-2"><span class="skill-tag">Streamlit</span><span class="skill-tag">Git</span><span class="skill-tag">APIs</span><span class="skill-tag">Automation</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Experience -->
+  <section id="experience" class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-16"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">04</span>
+     <h2 data-template-id="experience-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div>
+    <div class="max-w-3xl space-y-10">
+     <div class="reveal border-l-2 border-[#C9A96E] pl-6">
+      <p data-template-id="exp1-period" class="canva-text text-xs text-zinc-500 uppercase tracking-wider"></p>
+      <h3 data-template-id="exp1-role" class="canva-text text-lg font-semibold mt-1"></h3>
+      <p data-template-id="exp1-org" class="canva-text text-sm text-[#C9A96E]"></p>
+      <p data-template-id="exp1-desc" class="canva-text text-sm text-zinc-400 mt-2 leading-relaxed"></p>
+     </div>
+     <div class="reveal border-l-2 border-zinc-700 pl-6">
+      <p data-template-id="exp2-period" class="canva-text text-xs text-zinc-500 uppercase tracking-wider"></p>
+      <h3 data-template-id="exp2-role" class="canva-text text-lg font-semibold mt-1"></h3>
+      <p data-template-id="exp2-org" class="canva-text text-sm text-[#C9A96E]"></p>
+      <p data-template-id="exp2-desc" class="canva-text text-sm text-zinc-400 mt-2 leading-relaxed"></p>
+     </div>
+     <div class="reveal border-l-2 border-zinc-700 pl-6">
+      <p data-template-id="exp3-period" class="canva-text text-xs text-zinc-500 uppercase tracking-wider"></p>
+      <h3 data-template-id="exp3-role" class="canva-text text-lg font-semibold mt-1"></h3>
+      <p data-template-id="exp3-org" class="canva-text text-sm text-[#C9A96E]"></p>
+      <p data-template-id="exp3-desc" class="canva-text text-sm text-zinc-400 mt-2 leading-relaxed"></p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Achievements -->
+  <section class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-16"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">05</span>
+     <h2 data-template-id="metrics-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+     <div class="reveal text-center">
+      <p data-template-id="metric-1-value" class="canva-text font-display text-4xl font-bold text-[#C9A96E]"></p>
+      <p data-template-id="metric-1-label" class="canva-text text-xs text-zinc-500 uppercase tracking-wider mt-2"></p>
+     </div>
+     <div class="reveal reveal-delay-1 text-center">
+      <p data-template-id="metric-2-value" class="canva-text font-display text-4xl font-bold text-[#C9A96E]"></p>
+      <p data-template-id="metric-2-label" class="canva-text text-xs text-zinc-500 uppercase tracking-wider mt-2"></p>
+     </div>
+     <div class="reveal reveal-delay-2 text-center">
+      <p data-template-id="metric-3-value" class="canva-text font-display text-4xl font-bold text-[#C9A96E]"></p>
+      <p data-template-id="metric-3-label" class="canva-text text-xs text-zinc-500 uppercase tracking-wider mt-2"></p>
+     </div>
+     <div class="reveal reveal-delay-3 text-center">
+      <p data-template-id="metric-4-value" class="canva-text font-display text-4xl font-bold text-[#C9A96E]"></p>
+      <p data-template-id="metric-4-label" class="canva-text text-xs text-zinc-500 uppercase tracking-wider mt-2"></p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Philosophy -->
+  <section class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal flex items-center gap-4 mb-12"><span class="text-xs text-[#C9A96E] tracking-widest uppercase">06</span>
+     <h2 data-template-id="philosophy-heading" class="canva-text font-display text-3xl md:text-4xl font-semibold"></h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+     <div class="reveal bg-card border border-subtle rounded-lg p-6"><span class="text-[#C9A96E] font-display text-2xl font-bold">01</span>
+      <p data-template-id="phil-1" class="canva-text text-sm text-zinc-300 mt-3 leading-relaxed"></p>
+     </div>
+     <div class="reveal reveal-delay-1 bg-card border border-subtle rounded-lg p-6"><span class="text-[#C9A96E] font-display text-2xl font-bold">02</span>
+      <p data-template-id="phil-2" class="canva-text text-sm text-zinc-300 mt-3 leading-relaxed"></p>
+     </div>
+     <div class="reveal reveal-delay-2 bg-card border border-subtle rounded-lg p-6"><span class="text-[#C9A96E] font-display text-2xl font-bold">03</span>
+      <p data-template-id="phil-3" class="canva-text text-sm text-zinc-300 mt-3 leading-relaxed"></p>
+     </div>
+     <div class="reveal reveal-delay-3 bg-card border border-subtle rounded-lg p-6"><span class="text-[#C9A96E] font-display text-2xl font-bold">04</span>
+      <p data-template-id="phil-4" class="canva-text text-sm text-zinc-300 mt-3 leading-relaxed"></p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact -->
+  <section id="contact" class="py-24 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6 text-center">
+    <div class="reveal max-w-2xl mx-auto">
+     <h2 data-template-id="contact-heading" class="canva-text font-display text-4xl md:text-5xl font-bold mb-6"></h2>
+     <p data-template-id="contact-desc" class="canva-text text-zinc-400 leading-relaxed mb-10"></p>
+     <div class="flex flex-wrap justify-center gap-4"><a href="#" data-template-id="contact-cta" class="canva-button px-8 py-3 bg-[#C9A96E] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition"></a> <a href="#" target="_blank" rel="noopener noreferrer" data-template-id="contact-linkedin" class="canva-button px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition"></a> <a href="#" target="_blank" rel="noopener noreferrer" data-template-id="contact-github" class="canva-button px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition"></a> <a href="#" data-template-id="contact-resume" class="canva-button px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition"></a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="py-8 border-t border-subtle">
+   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p data-template-id="footer-text" class="canva-text text-xs text-zinc-600"></p>
+    <p data-template-id="footer-tagline" class="canva-text text-xs text-zinc-600"></p>
+   </div>
+  </footer>
+  <script src="/_sdk/1a0e63f7a958ec3e.editing_sdk.js" integrity="sha512-lW+iibZ5vXaBl3IQ1K3ooQE1gfdDZxiO+Y7NpWdeypLOwr1WIYo3edm3nu+wyePemyM75tcU3yV7YyImK9wxMQ=="></script>
+  <script>
+        lucide.createIcons();
+
+        // Mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden'); }
+            });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+ </body>
+</html>
