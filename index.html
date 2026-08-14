@@ -7,10 +7,10 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link rel="icon" type="image/png" href="pro.png">
   <style>
     :root {
       --accent: #00bfff;
+      --accent-2: #C9A96E;
       --bg-primary: #0A0A0B;
       --bg-secondary: #111113;
       --text-primary: #F5F5F4;
@@ -22,149 +22,169 @@
     .accent { color: var(--accent); }
     .border-subtle { border-color: var(--border); }
     .bg-card { background: var(--bg-secondary); }
+    
+    /* انیمیشن‌ها */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; } .reveal-delay-4 { transition-delay: 0.4s; }
+    
+    /* ناوبری */
     .nav-link { position: relative; }
     .nav-link::after { content: ''; position: absolute; bottom: -2px; right: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s; }
     .nav-link:hover::after { width: 100%; }
-    .project-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    
+    /* پس‌زمینه و کارت‌ها */
     .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; }
-    .skill-tag { background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.2); color: var(--text-primary); padding: 6px 14px; border-radius: 4px; font-size: 13px; transition: all 0.3s; }
-    .skill-tag:hover { background: rgba(201,169,110,0.15); border-color: var(--accent); }
-    .profile-img { width: 160px; height: 160px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; box-shadow: 0 0 40px rgba(201,169,110,0.15); }
-    .uni-logo { width: 60px; height: 60px; border-radius: 12px; object-fit: contain; background: white; padding: 4px; }
     .section-divider { width: 60px; height: 2px; background: var(--accent); margin-bottom: 24px; }
-    .stats-number { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .uni-logo { width: 60px; height: 60px; border-radius: 12px; object-fit: contain; background: white; padding: 4px; }
 
-    /* ===== استایل‌های جدید فقط برای هیرو و درباره من ===== */
-    .profile-wrapper {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      padding: 4px;
-    }
+    /* هیرو و پروفایل */
+    .profile-wrapper { position: relative; width: 180px; height: 180px; border-radius: 50%; padding: 4px; }
     .profile-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 2px solid transparent;
+      content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid transparent;
       background: conic-gradient(from 0deg, transparent 0%, var(--accent) 20%, transparent 40%, var(--accent) 60%, transparent 80%, var(--accent) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: spinRing 8s linear infinite;
+      -webkit-mask-composite: xor; mask-composite: exclude; animation: spinRing 8s linear infinite;
     }
-    @keyframes spinRing {
-      to { transform: rotate(360deg); }
-    }
-    .profile-wrapper .profile-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--bg-primary);
-      position: relative;
-      z-index: 1;
-      filter: grayscale(20%);
-      transition: filter 0.5s ease, transform 0.5s ease;
-      box-shadow: none;
-    }
-    .profile-wrapper:hover .profile-img {
-      filter: grayscale(0%);
-      transform: scale(1.02);
+    @keyframes spinRing { to { transform: rotate(360deg); } }
+    .profile-wrapper .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-primary); position: relative; z-index: 1; filter: grayscale(20%); transition: filter 0.5s ease, transform 0.5s ease; }
+    .profile-wrapper:hover .profile-img { filter: grayscale(0%); transform: scale(1.02); }
+
+    .kinetic-words { display: flex; flex-wrap: wrap; gap: 0.3em 0.5em; align-items: baseline; font-weight: 700; color: #52525b; line-height: 1.2; min-height: 1.2em; }
+    .kinetic-word { opacity: 0; transform: translateY(15px); animation: wordIn 0.6s ease forwards; transition: color 0.4s ease; }
+    .kinetic-word.sep { color: #3f3f46; font-weight: 300; }
+    .kinetic-word.highlight { color: var(--accent); text-shadow: 0 0 20px rgba(0,191,255,0.25); }
+    @keyframes wordIn { to { opacity: 1; transform: translateY(0); } }
+
+    /* کارت اطلاعات فردی */
+    .identity-card { background: rgba(17, 17, 19, 0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; transition: all 0.4s ease; position: relative; overflow: hidden; }
+    .identity-card::after { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(0,191,255,0.04) 0%, transparent 50%); pointer-events: none; opacity: 0; transition: opacity 0.5s ease; }
+    .identity-card:hover { border-color: rgba(0,191,255,0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,191,255,0.1); transform: translateY(-2px); }
+    .identity-card:hover::after { opacity: 1; }
+    .info-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); transition: all 0.3s ease; }
+    .info-row:last-child { border-bottom: none; }
+    .info-row:hover { padding-right: 8px; }
+    .info-row:hover .info-label { color: var(--accent); }
+    .info-label { color: #71717a; font-size: 13px; transition: color 0.3s ease; }
+    .info-value { color: #e4e4e7; font-size: 13px; font-weight: 500; }
+
+    /* آمار */
+    .stats-row { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
+    .stat-item { text-align: center; min-width: 150px; }
+    .stat-number { font-size: 2.6rem; font-weight: 800; color: #00bfff; line-height: 1.2; font-family: 'Vazirmatn', sans-serif; display: flex; align-items: center; justify-content: center; gap: 3px; direction: rtl; }
+    .stat-suffix { font-size: 1.4rem; font-weight: 700; color: #00bfff; }
+    .stat-label { font-size: 13px; color: #ddd; margin-top: 6px; font-weight: 600; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; }
+    .stat-sub { font-size: 11px; color: #888; margin-top: 3px; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; }
+    .stat-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.1); }
+    @media (max-width: 768px) {
+      .stats-row { gap: 18px; } .stat-divider { display: none; } .stat-item { min-width: 110px; }
+      .stat-number { font-size: 1.8rem; } .stat-suffix { font-size: 1.1rem; } .stat-label { font-size: 11px; } .stat-sub { font-size: 10px; }
     }
 
-    .kinetic-words {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3em 0.5em;
-      align-items: baseline;
-      font-weight: 700;
-      color: #52525b;
-      line-height: 1.2;
-      min-height: 1.2em;
-    }
-    .kinetic-word {
-      opacity: 0;
-      transform: translateY(15px);
-      animation: wordIn 0.6s ease forwards;
-      transition: color 0.4s ease;
-    }
-    .kinetic-word.sep {
-      color: #3f3f46;
-      font-weight: 300;
-    }
-    .kinetic-word.highlight {
-      color: var(--accent);
-      text-shadow: 0 0 20px rgba(0,191,255,0.25);
-    }
-    @keyframes wordIn {
-      to { opacity: 1; transform: translateY(0); }
+    /* پروژه‌ها */
+    .project-card { transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; position: relative; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); border-color: rgba(0,191,255,0.3); }
+    .project-image-wrapper { position: relative; overflow: hidden; }
+    .project-image-wrapper img { transition: transform 0.6s ease; }
+    .project-card:hover .project-image-wrapper img { transform: scale(1.04); }
+    .project-badge { position: absolute; top: 12px; right: 12px; background: rgba(10,10,11,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(0,191,255,0.3); color: #00bfff; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; font-family: 'Vazirmatn', sans-serif; z-index: 2; }
+    .project-caption-collapsible { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease; opacity: 0; }
+    .project-caption-collapsible.open { max-height: 500px; opacity: 1; }
+    .read-more-btn { background: none; border: none; color: #00bfff; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Vazirmatn', sans-serif; padding: 4px 0; display: flex; align-items: center; gap: 4px; transition: color 0.3s; }
+    .read-more-btn:hover { color: #fff; }
+    .read-more-btn .chevron-icon { width: 14px; height: 14px; transition: transform 0.35s ease; }
+    .read-more-btn.active .chevron-icon { transform: rotate(180deg); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .project-tag { font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); color: #aaa; border: 1px solid rgba(255,255,255,0.08); font-family: 'Vazirmatn', sans-serif; }
+    .project-status { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: #4ade80; font-family: 'Vazirmatn', sans-serif; margin-top: 8px; }
+    .project-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.5); animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* تجربیات */
+    .exp-timeline { position: relative; }
+    .exp-timeline::before { content: ''; position: absolute; top: 0; bottom: 0; right: 22px; width: 2px; background: linear-gradient(to bottom, rgba(0,191,255,0.4), rgba(201,169,110,0.3), rgba(0,191,255,0.2)); }
+    .exp-item { position: relative; padding-right: 60px; margin-bottom: 16px; }
+    .exp-dot { position: absolute; right: 12px; top: 20px; width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--bg-primary); background: #00bfff; box-shadow: 0 0 16px rgba(0,191,255,0.35); z-index: 2; }
+    .exp-dot.current { background: #C9A96E; box-shadow: 0 0 16px rgba(201,169,110,0.4); animation: expPulse 2.5s infinite; }
+    @keyframes expPulse { 0%, 100% { box-shadow: 0 0 16px rgba(201,169,110,0.4); } 50% { box-shadow: 0 0 28px rgba(201,169,110,0.7); } }
+    .exp-card { background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden; transition: all 0.35s ease; cursor: pointer; }
+    .exp-card:hover { border-color: rgba(0,191,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .exp-card.active { border-color: rgba(0,191,255,0.45); box-shadow: 0 12px 40px rgba(0,191,255,0.08); }
+    .exp-header { padding: 18px 22px; display: flex; align-items: center; gap: 14px; user-select: none; }
+    .exp-date-badge { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; flex-shrink: 0; }
+    .badge-current { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
+    .badge-past { background: rgba(255,255,255,0.04); color: #999; border: 1px solid rgba(255,255,255,0.08); }
+    .exp-title { font-weight: 700; font-size: 15px; color: #fff; font-family: 'Vazirmatn', sans-serif; }
+    .exp-company { font-size: 12px; color: #00bfff; font-family: 'Vazirmatn', sans-serif; font-weight: 600; }
+    .exp-chevron { margin-right: auto; transition: transform 0.4s ease; color: #666; flex-shrink: 0; }
+    .exp-card.active .exp-chevron { transform: rotate(180deg); color: #00bfff; }
+    .exp-body { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease; opacity: 0; }
+    .exp-card.active .exp-body { max-height: 4000px; opacity: 1; }
+    .exp-body-inner { padding: 0 22px 22px 22px; }
+    .exp-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 16px; }
+    .exp-duty-section { margin-bottom: 14px; }
+    .exp-duty-section-title { font-size: 12px; font-weight: 700; color: #C9A96E; font-family: 'Vazirmatn', sans-serif; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .exp-duty-list { list-style: none; padding: 0; margin: 0; }
+    .exp-duty-list li { font-size: 12px; color: #aaa; font-family: 'Vazirmatn', sans-serif; line-height: 1.9; padding-right: 18px; position: relative; }
+    .exp-duty-list li::before { content: '▹'; position: absolute; right: 0; top: 0; color: #00bfff; font-size: 11px; }
+    .exp-duty-list li:hover { color: #ddd; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .exp-tag { font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); color: #888; border: 1px solid rgba(255,255,255,0.08); font-family: 'Vazirmatn', sans-serif; }
+
+    /* مهارت‌ها */
+    .skills-tabs-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .skills-tab-btn { padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #999; font-family: 'Vazirmatn', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.35s ease; white-space: nowrap; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px; }
+    .skills-tab-btn:hover { border-color: rgba(0,191,255,0.35); color: #ccc; background: rgba(0,191,255,0.05); }
+    .skills-tab-btn.active { background: rgba(0,191,255,0.12); border-color: #00bfff; color: #00bfff; font-weight: 600; box-shadow: 0 4px 20px rgba(0,191,255,0.12); }
+    .skills-tab-count { font-size: 10px; background: rgba(0,191,255,0.2); color: #00bfff; padding: 2px 8px; border-radius: 20px; margin-right: 4px; }
+    .skills-tab-btn.active .skills-tab-count { background: #00bfff; color: #0A0A0B; }
+    .skills-tab-content { display: none; animation: tabFadeIn 0.5s ease; }
+    .skills-tab-content.active { display: block; }
+    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .skill-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 18px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .skill-card:hover { background: rgba(0,191,255,0.03); border-color: rgba(0,191,255,0.18); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .skill-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; }
+    .skill-card:hover::before { background: #00bfff; }
+    .level-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; font-family: 'Vazirmatn', sans-serif; }
+    .badge-proficient { background: rgba(0,191,255,0.15); color: #00bfff; border: 1px solid rgba(0,191,255,0.25); }
+    .badge-good { background: rgba(201,169,110,0.15); color: #C9A96E; border: 1px solid rgba(201,169,110,0.25); }
+    .badge-intermediate { background: rgba(255,255,255,0.05); color: #999; border: 1px solid rgba(255,255,255,0.1); }
+    .badge-learning { background: rgba(255,255,255,0.02); color: #777; border: 1px dashed rgba(255,255,255,0.12); }
+    .skill-subsection { margin-bottom: 24px; }
+    .skill-subsection-title { font-size: 14px; font-weight: 600; color: #aaa; margin-bottom: 12px; font-family: 'Vazirmatn', sans-serif; display: flex; align-items: center; gap: 8px; }
+    .skill-subsection-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+    /* دوره‌ها */
+    .courses-layout { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .courses-table-wrapper { flex: 1; min-width: 300px; }
+    .courses-table { width: 100%; border-collapse: collapse; }
+    .courses-table th { text-align: right; padding: 12px 16px; font-size: 13px; font-weight: 700; color: #C9A96E; font-family: 'Vazirmatn', sans-serif; border-bottom: 1px solid rgba(201,169,110,0.25); white-space: nowrap; }
+    .courses-table td { padding: 14px 16px; font-size: 13px; font-family: 'Vazirmatn', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.05); color: #bbb; }
+    .courses-table tr { transition: background 0.3s; }
+    .courses-table tbody tr:hover { background: rgba(201,169,110,0.03); }
+    .courses-table tbody tr:last-child td { border-bottom: none; }
+    .courses-table .course-name { color: #fff; font-weight: 600; }
+    .cert-side { display: flex; flex-direction: column; gap: 20px; flex-shrink: 0; }
+    .cert-thumb { width: 220px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.35s ease; position: relative; }
+    .cert-thumb:hover { border-color: rgba(201,169,110,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.35); transform: translateY(-3px); }
+    .cert-thumb img { width: 100%; height: auto; display: block; }
+    .cert-thumb-lg { width: 260px; }
+    .cert-thumb-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 20px 12px 10px 12px; font-size: 11px; font-family: 'Vazirmatn', sans-serif; color: #ddd; text-align: center; }
+    .cert-thumb:hover .cert-thumb-label { color: #fff; }
+    .cert-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.92); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 40px; backdrop-filter: blur(10px); }
+    .cert-modal.open { display: flex; }
+    .cert-modal img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
+    .cert-modal-close { position: absolute; top: 20px; left: 20px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+    .cert-modal-close:hover { background: rgba(255,255,255,0.2); }
+    .cert-modal-close svg { width: 22px; height: 22px; color: #fff; }
+    @media (max-width: 992px) {
+      .courses-layout { flex-direction: column-reverse; }
+      .cert-side { flex-direction: row; flex-wrap: wrap; }
+      .cert-thumb, .cert-thumb-lg { width: 180px; }
     }
 
-    .identity-card {
-      background: rgba(17, 17, 19, 0.75);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 24px;
-      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .identity-card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(0,191,255,0.04) 0%, transparent 50%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .identity-card:hover {
-      border-color: rgba(0,191,255,0.35);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,191,255,0.1);
-      transform: translateY(-2px);
-    }
-    .identity-card:hover::after {
-      opacity: 1;
-    }
-    .info-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.3s ease;
-    }
-    .info-row:last-child {
-      border-bottom: none;
-    }
-    .info-row:hover {
-      padding-right: 8px;
-    }
-    .info-row:hover .info-label {
-      color: var(--accent);
-    }
-    .info-label {
-      color: #71717a;
-      font-size: 13px;
-      transition: color 0.3s ease;
-    }
-    .info-value {
-      color: #e4e4e7;
-      font-size: 13px;
-      font-weight: 500;
-    }
-    /* ===== پایان استایل‌های جدید ===== */
+    /* آیکون‌ها در متن */
+    .icon-sm { width: 16px; height: 16px; display: inline-block; vertical-align: middle; }
   </style>
 </head>
 <body class="w-full min-h-screen grid-bg">
@@ -172,8 +192,8 @@
 <!-- ناوبری -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0A0A0B]/80 border-b border-subtle">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#" class="text-lg font-semibold tracking-tight font-[Vazirmatn]">امیرحسین نوری فرد</a>
-    <div class="hidden md:flex items-center gap-8 font-[Vazirmatn]">
+    <a href="#" class="text-lg font-semibold tracking-tight">امیرحسین نوری فرد</a>
+    <div class="hidden md:flex items-center gap-8">
       <a href="#about" class="nav-link text-sm text-zinc-400 hover:text-white transition">درباره من</a>
       <a href="#education" class="nav-link text-sm text-zinc-400 hover:text-white transition">تحصیلات</a>
       <a href="#work" class="nav-link text-sm text-zinc-400 hover:text-white transition">پروژه‌ها</a>
@@ -184,7 +204,7 @@
     </div>
     <button id="mobile-menu-btn" class="md:hidden text-white"><i data-lucide="menu" style="width:24px;height:24px"></i></button>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-right font-[Vazirmatn]">
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-right">
     <a href="#about" class="block text-sm text-zinc-400">درباره من</a>
     <a href="#education" class="block text-sm text-zinc-400">تحصیلات</a>
     <a href="#work" class="block text-sm text-zinc-400">پروژه‌ها</a>
@@ -205,16 +225,13 @@
         </div>
       </div>
       <div class="flex-1">
+        <div class="reveal"><div class="section-divider"></div></div>
         <div class="reveal">
-          <div class="section-divider"></div>
-        </div>
-        <div class="reveal">
-          <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight mb-3 font-[Vazirmatn]">
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight mb-3">
             امیرحسین
             <span class="block accent">نوری فرد</span>
           </h1>
         </div>
-
         <div class="reveal reveal-delay-1 mt-6">
           <div class="kinetic-words text-2xl md:text-4xl">
             <span class="kinetic-word">Python</span>
@@ -226,22 +243,19 @@
             <span class="kinetic-word highlight">AI</span>
           </div>
         </div>
-
         <div class="reveal reveal-delay-2 mt-6 max-w-2xl">
-          <p class="text-lg md:text-xl text-zinc-300 font-light leading-relaxed font-[Vazirmatn]">
+          <p class="text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
             دانشجوی اقتصاد | تحلیلگر داده و سیستم‌های مالی | توسعه‌دهنده راهکارهای داده‌محور
           </p>
         </div>
-
         <div class="reveal reveal-delay-2 mt-4 max-w-xl">
-          <p class="text-sm text-zinc-500 leading-relaxed font-[Vazirmatn]">
+          <p class="text-sm text-zinc-500 leading-relaxed">
             رسالت حرفه‌ای خود را خلق ارزش‌های اقتصادی و توسعه‌ای می‌دانم و معتقدم ارائه راهکارهای مبتنی بر خلاقیت، نوآوری و تصمیم‌گیری داده‌محور می‌تواند موتور رشد و توسعه در سطح خرد و کلان باشد.
           </p>
         </div>
-
         <div class="reveal reveal-delay-3 mt-8 flex flex-wrap gap-4">
-          <a href="#work" class="px-6 py-3 bg-[#00bfff] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition font-[Vazirmatn]">مشاهده نمونه کارها</a>
-          <a href="#contact" class="px-6 py-3 border border-zinc-600 text-white font-medium text-sm rounded hover:border-zinc-400 transition font-[Vazirmatn]">تماس با من</a>
+          <a href="#work" class="px-6 py-3 bg-[#00bfff] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition">مشاهده نمونه کارها</a>
+          <a href="#contact" class="px-6 py-3 border border-zinc-600 text-white font-medium text-sm rounded hover:border-zinc-400 transition">تماس با من</a>
         </div>
       </div>
     </div>
@@ -251,45 +265,30 @@
 <!-- درباره من -->
 <section id="about" class="py-24 border-t border-subtle">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="reveal flex items-center gap-4 mb-12"><span class="text-xs text-[#00bfff] tracking-widest uppercase font-[Vazirmatn]">۰۱</span><h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">درباره من</h2></div>
+    <div class="reveal flex items-center gap-4 mb-12">
+      <span class="text-xs text-[#00bfff] tracking-widest uppercase">۰۱</span>
+      <h2 class="text-3xl md:text-4xl font-bold">درباره من</h2>
+    </div>
     <div class="grid md:grid-cols-2 gap-16">
       <div class="reveal reveal-delay-1 space-y-6">
-        <p class="text-zinc-400 leading-relaxed font-[Vazirmatn]">دانشجوی اقتصاد دانشگاه خوارزمی  و علاقه‌مند به پیوند میان اقتصاد، داده، فناوری ، تصمیم‌گیری و تحلیل و پیش‌بینی رفتارها، از سال ۱۳۹۶ با بازار سرمایه آشنا شدم و در این مسیر، علاقه‌ام به‌تدریج از شناخت بازارها به استفاده از داده و فناوری برای درک بهتر مسائل و سازوکارهای واقعی کسب‌وکارها و سازمان‌ها گسترش پیدا کرد.</p>
-        <p class="text-zinc-400 leading-relaxed font-[Vazirmatn]">تلاش می‌کنم داده را صرفاً به‌عنوان مجموعه‌ای از اعداد و اطلاعات نبینم، بلکه آن را در کنار واقعیت‌های کسب‌وکار، رفتار انسان‌ها و سازوکارهای اقتصادی قرار دهم تا بتوان از آن برای شناخت مسائل، یافتن فرصت‌ها و بهبود تصمیم‌گیری استفاده کرد. به همین دلیل، همواره در حال توسعه مهارت‌هایم در حوزه‌هایی مانند تحلیل داده، برنامه‌نویسی، اقتصاد و روش‌های کمی هستم و تلاش دارم آموخته‌هایم را در مسائل واقعی و متنوع به کار بگیرم.</p>
-        <p class="text-zinc-400 leading-relaxed font-[Vazirmatn]">باور دارم حکمرانی صحیح داده و حرکت به سوی اقتصاد دیجیتال می‌تواند در سطوح مختلف، از یک کسب‌وکار کوچک تا نهادها و سازمان‌های بزرگ، به افزایش بهره‌وری، استفاده بهتر از منابع و تصمیم‌گیری آگاهانه‌تر کمک کند. به همین دلیل علاقه‌مندم دانش و تجربه‌ام را به یک صنعت یا حوزه خاص محدود نکنم و در مواجهه با مسائل گوناگون، از ترکیب داده، دانش و شناخت واقعیت‌های محیط برای خلق ارزش استفاده کنم.</p>
-        <p class="text-zinc-400 leading-relaxed font-[Vazirmatn]">یادگیری مستمر و آموختن از تجربه‌های ارزشمند دیگران برای من بخش مهمی از مسیر حرفه‌ای است. خودم را همچنان در حال یادگیری می‌دانم و تلاش می‌کنم با تجربه‌کردن، شنیدن دیدگاه‌های متفاوت و یادگرفتن از افراد و محیط‌های مختلف، به‌مرور دانش و توانایی خود را عمیق‌تر کنم و بتوانم در حل مسائل واقعی و ایجاد ارزش برای سازمان‌ها و کسب‌وکارها نقش مؤثری داشته باشم.</p>
+        <p class="text-zinc-400 leading-relaxed">دانشجوی اقتصاد دانشگاه خوارزمی و علاقه‌مند به پیوند میان اقتصاد، داده، فناوری، تصمیم‌گیری و تحلیل و پیش‌بینی رفتارها، از سال ۱۳۹۶ با بازار سرمایه آشنا شدم و در این مسیر، علاقه‌ام به‌تدریج از شناخت بازارها به استفاده از داده و فناوری برای درک بهتر مسائل و سازوکارهای واقعی کسب‌وکارها و سازمان‌ها گسترش پیدا کرد.</p>
+        <p class="text-zinc-400 leading-relaxed">تلاش می‌کنم داده را صرفاً به‌عنوان مجموعه‌ای از اعداد و اطلاعات نبینم، بلکه آن را در کنار واقعیت‌های کسب‌وکار، رفتار انسان‌ها و سازوکارهای اقتصادی قرار دهم تا بتوان از آن برای شناخت مسائل، یافتن فرصت‌ها و بهبود تصمیم‌گیری استفاده کرد. به همین دلیل، همواره در حال توسعه مهارت‌هایم در حوزه‌هایی مانند تحلیل داده، برنامه‌نویسی، اقتصاد و روش‌های کمی هستم و تلاش دارم آموخته‌هایم را در مسائل واقعی و متنوع به کار بگیرم.</p>
+        <p class="text-zinc-400 leading-relaxed">باور دارم حکمرانی صحیح داده و حرکت به سوی اقتصاد دیجیتال می‌تواند در سطوح مختلف، از یک کسب‌وکار کوچک تا نهادها و سازمان‌های بزرگ، به افزایش بهره‌وری، استفاده بهتر از منابع و تصمیم‌گیری آگاهانه‌تر کمک کند. به همین دلیل علاقه‌مندم دانش و تجربه‌ام را به یک صنعت یا حوزه خاص محدود نکنم و در مواجهه با مسائل گوناگون، از ترکیب داده، دانش و شناخت واقعیت‌های محیط برای خلق ارزش استفاده کنم.</p>
+        <p class="text-zinc-400 leading-relaxed">یادگیری مستمر و آموختن از تجربه‌های ارزشمند دیگران برای من بخش مهمی از مسیر حرفه‌ای است. خودم را همچنان در حال یادگیری می‌دانم و تلاش می‌کنم با تجربه‌کردن، شنیدن دیدگاه‌های متفاوت و یادگرفتن از افراد و محیط‌های مختلف، به‌مرور دانش و توانایی خود را عمیق‌تر کنم و بتوانم در حل مسائل واقعی و ایجاد ارزش برای سازمان‌ها و کسب‌وکارها نقش مؤثری داشته باشم.</p>
       </div>
       <div class="reveal reveal-delay-2">
         <div class="identity-card">
-          <h3 class="text-[#00bfff] font-bold mb-4 font-[Vazirmatn] flex items-center gap-2">
+          <h3 class="text-[#00bfff] font-bold mb-4 flex items-center gap-2">
             <i data-lucide="id-card" style="width:18px;height:18px;color:var(--accent);"></i>
             اطلاعات فردی
           </h3>
-          <div class="space-y-0 font-[Vazirmatn]">
-            <div class="info-row">
-              <span class="info-label">نام و نام خانوادگی</span>
-              <span class="info-value">امیرحسین نوری فرد</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">تاریخ تولد</span>
-              <span class="info-value">۱۳۸۳/۱۲/۲۷</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">جنسیت</span>
-              <span class="info-value">مرد</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">وضعیت تأهل</span>
-              <span class="info-value">مجرد</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">وضعیت نظام وظیفه</span>
-              <span class="info-value">معافیت تحصیلی</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">شهر محل سکونت</span>
-              <span class="info-value">تهران</span>
-            </div>
+          <div class="space-y-0">
+            <div class="info-row"><span class="info-label">نام و نام خانوادگی</span><span class="info-value">امیرحسین نوری فرد</span></div>
+            <div class="info-row"><span class="info-label">تاریخ تولد</span><span class="info-value">۱۳۸۳/۱۲/۲۷</span></div>
+            <div class="info-row"><span class="info-label">جنسیت</span><span class="info-value">مرد</span></div>
+            <div class="info-row"><span class="info-label">وضعیت تأهل</span><span class="info-value">مجرد</span></div>
+            <div class="info-row"><span class="info-label">وضعیت نظام وظیفه</span><span class="info-value">معافیت تحصیلی</span></div>
+            <div class="info-row"><span class="info-label">شهر محل سکونت</span><span class="info-value">تهران</span></div>
           </div>
         </div>
       </div>
@@ -297,201 +296,82 @@
   </div>
 </section>
 
-
-
-
-
 <!-- تحصیلات -->
 <section id="education" class="py-24 border-t border-subtle">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="reveal flex items-center gap-4 mb-12"><span class="text-xs text-[#00bfff] tracking-widest uppercase font-[Vazirmatn]">۰۲</span><h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">سوابق تحصیلی</h2></div>
+    <div class="reveal flex items-center gap-4 mb-12">
+      <span class="text-xs text-[#00bfff] tracking-widest uppercase">۰۲</span>
+      <h2 class="text-3xl md:text-4xl font-bold">سوابق تحصیلی</h2>
+    </div>
     <div class="reveal bg-card border border-subtle rounded-lg p-8 flex flex-col md:flex-row items-center gap-6 max-w-2xl">
       <img src="logo.png" alt="دانشگاه خوارزمی" class="uni-logo">
       <div>
-        <h3 class="text-xl font-bold font-[Vazirmatn]">دانشگاه خوارزمی — کارشناسی اقتصاد</h3>
-        <p class="text-zinc-400 mt-1 font-[Vazirmatn]">معدل: الف | دانشجو از ۱۴۰۲</p>
-        <p class="text-zinc-500 text-sm mt-2 font-[Vazirmatn]">دیپلم ریاضی-فیزیک</p>
+        <h3 class="text-xl font-bold">دانشگاه خوارزمی — کارشناسی اقتصاد</h3>
+        <p class="text-zinc-400 mt-1">معدل: الف | دانشجو از ۱۴۰۲</p>
+        <p class="text-zinc-500 text-sm mt-2">دیپلم ریاضی-فیزیک</p>
       </div>
     </div>
   </div>
 </section>
-
-
 
 <!-- شمارنده‌های آماری -->
 <section class="py-14 border-t border-subtle relative overflow-hidden">
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <div class="absolute top-0 left-1/3 w-72 h-72 bg-[#00bfff] rounded-full blur-[100px]"></div>
   </div>
-
-  <style>
-    .stats-row { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
-    .stat-item { text-align: center; min-width: 150px; }
-    .stat-number { font-size: 2.6rem; font-weight: 800; color: #00bfff; line-height: 1.2; font-family: 'Vazirmatn', sans-serif; display: flex; align-items: center; justify-content: center; gap: 3px; direction: rtl; }
-    .stat-suffix { font-size: 1.4rem; font-weight: 700; color: #00bfff; }
-    .stat-label { font-size: 13px; color: #ddd; margin-top: 6px; font-weight: 600; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; }
-    .stat-sub { font-size: 11px; color: #888; margin-top: 3px; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; }
-    .stat-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.1); }
-    @media (max-width: 768px) {
-      .stats-row { gap: 18px; }
-      .stat-divider { display: none; }
-      .stat-item { min-width: 110px; }
-      .stat-number { font-size: 1.8rem; }
-      .stat-suffix { font-size: 1.1rem; }
-      .stat-label { font-size: 11px; }
-      .stat-sub { font-size: 10px; }
-    }
-  </style>
-
   <div class="max-w-6xl mx-auto px-6 relative z-10">
     <div class="reveal stats-row">
-      
-      <!-- شمارنده ۱ -->
       <div class="stat-item">
-        <div class="stat-number">
-          <span class="counter-value" data-target="3" data-duration="800">0</span>
-          <span class="stat-suffix">+</span>
-        </div>
-        <p class="stat-label">سال سابقه فعالیت</p>
-        <p class="stat-sub">از ۱۴۰۲ تاکنون</p>
+        <div class="stat-number"><span class="counter-value" data-target="3" data-duration="800">0</span><span class="stat-suffix">+</span></div>
+        <p class="stat-label">سال سابقه فعالیت</p><p class="stat-sub">از ۱۴۰۲ تاکنون</p>
       </div>
-
       <div class="stat-divider"></div>
-
-      <!-- شمارنده ۲ -->
       <div class="stat-item">
-        <div class="stat-number">
-          <span class="counter-value" data-target="150" data-duration="1200">0</span>
-          <span class="stat-suffix">+</span>
-        </div>
-        <p class="stat-label">پروژه تحلیل داده</p>
-        <p class="stat-sub">عملیاتی و واقعی</p>
+        <div class="stat-number"><span class="counter-value" data-target="150" data-duration="1200">0</span><span class="stat-suffix">+</span></div>
+        <p class="stat-label">پروژه تحلیل داده</p><p class="stat-sub">عملیاتی و واقعی</p>
       </div>
-
       <div class="stat-divider"></div>
-
-      <!-- شمارنده ۳ -->
       <div class="stat-item">
-        <div class="stat-number">
-          <span class="counter-value" data-target="70" data-duration="1000">0</span>
-          <span class="stat-suffix">+</span>
-        </div>
-        <p class="stat-label">برنامه فعال</p>
-        <p class="stat-sub">در سرورهای لوکال شرکتی</p>
+        <div class="stat-number"><span class="counter-value" data-target="70" data-duration="1000">0</span><span class="stat-suffix">+</span></div>
+        <p class="stat-label">برنامه فعال</p><p class="stat-sub">در سرورهای لوکال شرکتی</p>
       </div>
-
       <div class="stat-divider"></div>
-
-      <!-- شمارنده ۴ -->
       <div class="stat-item">
-        <div class="stat-number">
-          <span class="counter-value" data-target="25" data-duration="900">0</span>
-          <span class="stat-suffix">+</span>
-        </div>
-        <p class="stat-label">ابزار و تکنولوژی</p>
-        <p class="stat-sub">در چرخه داده و تحلیل</p>
+        <div class="stat-number"><span class="counter-value" data-target="25" data-duration="900">0</span><span class="stat-suffix">+</span></div>
+        <p class="stat-label">ابزار و تکنولوژی</p><p class="stat-sub">در چرخه داده و تحلیل</p>
       </div>
-
     </div>
   </div>
 </section>
-
-<script>
-  (function() {
-    function animateCounter(element) {
-      const target = parseInt(element.getAttribute('data-target'));
-      const duration = parseInt(element.getAttribute('data-duration'));
-      const startTime = performance.now();
-      
-      function updateCounter(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        const currentValue = Math.floor(eased * target);
-        element.textContent = currentValue.toLocaleString('fa-IR');
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          element.textContent = target.toLocaleString('fa-IR');
-        }
-      }
-      requestAnimationFrame(updateCounter);
-    }
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll('.counter-value');
-          counters.forEach(counter => {
-            if (counter.textContent === '0' || counter.textContent === '۰') {
-              animateCounter(counter);
-            }
-          });
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    const counterSection = document.querySelector('.stat-item')?.closest('section');
-    if (counterSection) counterObserver.observe(counterSection);
-  })();
-</script>
-
 
 <!-- پروژه‌ها -->
 <section id="work" class="py-24 border-t border-subtle relative overflow-hidden">
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <div class="absolute top-20 right-10 w-80 h-80 bg-[#C9A96E] rounded-full blur-[130px]"></div>
   </div>
-
-  <style>
-    .project-card { transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; position: relative; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); border-color: rgba(0,191,255,0.3); }
-    .project-image-wrapper { position: relative; overflow: hidden; }
-    .project-image-wrapper img { transition: transform 0.6s ease; }
-    .project-card:hover .project-image-wrapper img { transform: scale(1.04); }
-    .project-badge { position: absolute; top: 12px; right: 12px; background: rgba(10,10,11,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(0,191,255,0.3); color: #00bfff; font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 20px; font-family: 'Vazirmatn', sans-serif; z-index: 2; }
-    .project-caption-collapsible { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease; opacity: 0; }
-    .project-caption-collapsible.open { max-height: 500px; opacity: 1; }
-    .read-more-btn { background: none; border: none; color: #00bfff; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Vazirmatn', sans-serif; padding: 4px 0; display: flex; align-items: center; gap: 4px; transition: color 0.3s; }
-    .read-more-btn:hover { color: #fff; }
-    .read-more-btn .chevron-icon { width: 14px; height: 14px; transition: transform 0.35s ease; }
-    .read-more-btn.active .chevron-icon { transform: rotate(180deg); }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .project-tag { font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); color: #aaa; border: 1px solid rgba(255,255,255,0.08); font-family: 'Vazirmatn', sans-serif; }
-    .project-status { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; color: #4ade80; font-family: 'Vazirmatn', sans-serif; margin-top: 8px; }
-    .project-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,0.5); animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  </style>
-
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="reveal flex items-center gap-4 mb-8">
-      <span class="text-xs text-[#00bfff] tracking-widest uppercase font-[Vazirmatn]">۰۳</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">پروژه‌ها و نمونه‌کارها</h2>
+      <span class="text-xs text-[#00bfff] tracking-widest uppercase">۰۳</span>
+      <h2 class="text-3xl md:text-4xl font-bold">پروژه‌ها و نمونه‌کارها</h2>
     </div>
-    <p class="reveal text-zinc-400 mb-14 max-w-2xl font-[Vazirmatn] text-sm leading-relaxed">
+    <p class="reveal text-zinc-400 mb-14 max-w-2xl text-sm leading-relaxed">
       هر پروژه را از <span class="text-[#00bfff] font-semibold">ایده تا استقرار نهایی</span> طراحی و پیاده‌سازی کرده‌ام — از جمع‌آوری داده تا ارائه بینش‌های عملیاتی. برای جزئیات بیشتر روی «بیشتر بخوانید» کلیک کنید.
     </p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- پروژه ۱: داشبورد فروش و رفتار مشتری -->
+      <!-- پروژه ۱ -->
       <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="dash1.png" alt="داشبورد تحلیل فاکتورهای فروش" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">تحلیل فاکتورهای فروش و رفتار مشتری</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">داشبورد تعاملی برای تحلیل داده‌های فروش و الگوهای رفتاری مشتریان</p>
+          <h3 class="font-bold text-lg mb-2">تحلیل فاکتورهای فروش و رفتار مشتری</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">داشبورد تعاملی برای تحلیل داده‌های فروش و الگوهای رفتاری مشتریان</p>
           <div class="project-caption-collapsible" id="caption-dash1">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی سیستم جامع تحلیل فاکتورهای فروش، شناسایی الگوهای خرید، تحلیل RFM مشتریان، رصد محصولات پرفروش و ارائه گزارش‌های مدیریتی خودکار. این داشبورد به تیم فروش کمک می‌کند تا روندهای کلیدی را شناسایی و تصمیمات مبتنی بر داده بگیرند.</p>
-            <div class="project-tags">
-              <span class="project-tag">Streamlit</span>
-              <span class="project-tag">Pandas</span>
-              <span class="project-tag">Plotly</span>
-              <span class="project-tag">SQL</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی سیستم جامع تحلیل فاکتورهای فروش، شناسایی الگوهای خرید، تحلیل RFM مشتریان، رصد محصولات پرفروش و ارائه گزارش‌های مدیریتی خودکار. این داشبورد به تیم فروش کمک می‌کند تا روندهای کلیدی را شناسایی و تصمیمات مبتنی بر داده بگیرند.</p>
+            <div class="project-tags"><span class="project-tag">Streamlit</span><span class="project-tag">Pandas</span><span class="project-tag">Plotly</span><span class="project-tag">SQL</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-dash1', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -500,23 +380,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۲: توزیع جغرافیایی مشتریان -->
+      <!-- پروژه ۲ -->
       <div class="reveal reveal-delay-1 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="dash2.png" alt="تحلیل توزیع جغرافیایی مشتریان" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">تحلیل توزیع جغرافیایی مشتریان و تراکم رانندگان</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">نقشه تعاملی توزیع مشتریان و تراکم راننده‌های تاکسی در تهران</p>
+          <h3 class="font-bold text-lg mb-2">تحلیل توزیع جغرافیایی مشتریان و تراکم رانندگان</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">نقشه تعاملی توزیع مشتریان و تراکم راننده‌های تاکسی در تهران</p>
           <div class="project-caption-collapsible" id="caption-dash2">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی داشبورد نقشه‌محور برای تحلیل توزیع جغرافیایی مشتریان، تراکم راننده‌های فعال تاکسی در مناطق مختلف تهران، شناسایی نقاط پرتقاضا و بهینه‌سازی تخصیص منابع. این پروژه به بهبود پوشش خدمات و کاهش زمان انتظار کمک می‌کند.</p>
-            <div class="project-tags">
-              <span class="project-tag">Streamlit</span>
-              <span class="project-tag">Folium</span>
-              <span class="project-tag">GeoPandas</span>
-              <span class="project-tag">PostgreSQL</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی داشبورد نقشه‌محور برای تحلیل توزیع جغرافیایی مشتریان، تراکم راننده‌های فعال تاکسی در مناطق مختلف تهران، شناسایی نقاط پرتقاضا و بهینه‌سازی تخصیص منابع. این پروژه به بهبود پوشش خدمات و کاهش زمان انتظار کمک می‌کند.</p>
+            <div class="project-tags"><span class="project-tag">Streamlit</span><span class="project-tag">Folium</span><span class="project-tag">GeoPandas</span><span class="project-tag">PostgreSQL</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-dash2', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -525,23 +400,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۳: استراتژی‌های اختیار معامله -->
+      <!-- پروژه ۳ -->
       <div class="reveal reveal-delay-2 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="cover.png" alt="وب اپ استراتژی اختیار معامله" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">وب‌اپ استراتژی‌های اختیار معامله</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">شناسایی موقعیت‌های مناسب در بازار آپشن</p>
+          <h3 class="font-bold text-lg mb-2">وب‌اپ استراتژی‌های اختیار معامله</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">شناسایی موقعیت‌های مناسب در بازار آپشن</p>
           <div class="project-caption-collapsible" id="caption-cover">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی وب‌اپلیکیشن برای تحلیل استراتژی‌های بازار اختیار معامله، شبیه‌سازی سناریوهای مختلف، محاسبه یونانی‌ها (Greeks)، شناسایی موقعیت‌های سودآور و ارائه پیشنهادات عملیاتی. این ابزار به معامله‌گران کمک می‌کند تا تصمیمات آگاهانه‌تری در بازار مشتقه بگیرند.</p>
-            <div class="project-tags">
-              <span class="project-tag">Streamlit</span>
-              <span class="project-tag">NumPy</span>
-              <span class="project-tag">Plotly</span>
-              <span class="project-tag">FastAPI</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی وب‌اپلیکیشن برای تحلیل استراتژی‌های بازار اختیار معامله، شبیه‌سازی سناریوهای مختلف، محاسبه یونانی‌ها (Greeks)، شناسایی موقعیت‌های سودآور و ارائه پیشنهادات عملیاتی. این ابزار به معامله‌گران کمک می‌کند تا تصمیمات آگاهانه‌تری در بازار مشتقه بگیرند.</p>
+            <div class="project-tags"><span class="project-tag">Streamlit</span><span class="project-tag">NumPy</span><span class="project-tag">Plotly</span><span class="project-tag">FastAPI</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-cover', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -550,22 +420,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۴: گزارشات ماهانه سیمانی -->
+      <!-- پروژه ۴ -->
       <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="cod.png" alt="استخراج گزارشات ماهانه سیمانی" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">استخراج و تحلیل گزارشات ماهانه شرکت‌های سیمانی</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">خودکارسازی جمع‌آوری و تجزیه و تحلیل گزارشات سیمانی</p>
+          <h3 class="font-bold text-lg mb-2">استخراج و تحلیل گزارشات ماهانه شرکت‌های سیمانی</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">خودکارسازی جمع‌آوری و تجزیه و تحلیل گزارشات سیمانی</p>
           <div class="project-caption-collapsible" id="caption-cod">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">سیستم خودکار برای استخراج گزارشات ماهانه شرکت‌های سیمانی از کدال، پاک‌سازی و یکپارچه‌سازی داده‌ها، محاسبه شاخص‌های کلیدی عملکرد و ارائه داشبورد تحلیلی. این پروژه شامل دو نمای مجزا برای تحلیل تولید، فروش و موجودی است.</p>
-            <div class="project-tags">
-              <span class="project-tag">Web Scraping</span>
-              <span class="project-tag">Pandas</span>
-              <span class="project-tag">Plotly</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">سیستم خودکار برای استخراج گزارشات ماهانه شرکت‌های سیمانی از کدال، پاک‌سازی و یکپارچه‌سازی داده‌ها، محاسبه شاخص‌های کلیدی عملکرد و ارائه داشبورد تحلیلی. این پروژه شامل دو نمای مجزا برای تحلیل تولید، فروش و موجودی است.</p>
+            <div class="project-tags"><span class="project-tag">Web Scraping</span><span class="project-tag">Pandas</span><span class="project-tag">Plotly</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-cod', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -574,24 +440,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۵: نمای دوم گزارشات سیمانی -->
+      <!-- پروژه ۵ -->
       <div class="reveal reveal-delay-1 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="cod2.png" alt="نمای تحلیلی گزارشات سیمانی" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">داشبورد تحلیلی صنعت سیمان — نمای دوم</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">جمع آوری و یکپارچه سازی گزارشات ماهانه شرکت ها سیمانی</p>
+          <h3 class="font-bold text-lg mb-2">داشبورد تحلیلی صنعت سیمان — نمای دوم</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">جمع‌آوری و یکپارچه‌سازی گزارشات ماهانه شرکت‌های سیمانی</p>
           <div class="project-caption-collapsible" id="caption-cod2">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3"><p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">
-    این داشبورد، گزارش‌های ماهانه شرکت‌های سیمانی را از سامانه کدال جمع‌آوری و یکپارچه‌سازی کرده و اطلاعات کلیدی شامل تولید، فروش، تناژ، مبلغ فروش و نرخ محصولات را به تفکیک شرکت و در قالب سری‌های زمانی ارائه می‌دهد تا در سیستم‌های تحلیلی و تصمیم‌گیری مورد استفاده قرار گیرد.
-</p></p>
-            <div class="project-tags">
-              <span class="project-tag">Streamlit</span>
-              <span class="project-tag">Pandas</span>
-              <span class="project-tag">Plotly</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">این داشبورد، گزارش‌های ماهانه شرکت‌های سیمانی را از سامانه کدال جمع‌آوری و یکپارچه‌سازی کرده و اطلاعات کلیدی شامل تولید، فروش، تناژ، مبلغ فروش و نرخ محصولات را به تفکیک شرکت و در قالب سری‌های زمانی ارائه می‌دهد تا در سیستم‌های تحلیلی و تصمیم‌گیری مورد استفاده قرار گیرد.</p>
+            <div class="project-tags"><span class="project-tag">Streamlit</span><span class="project-tag">Pandas</span><span class="project-tag">Plotly</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-cod2', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -600,22 +460,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۶: رصد معاملات بورس کالا -->
+      <!-- پروژه ۶ -->
       <div class="reveal reveal-delay-2 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="sim2.png" alt="رصد معاملات بورس کالا" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">وب‌اپ رصد معاملات بورس کالا</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">مانیتورینگ لحظه‌ای معاملات و ارائه گزارشات خودکار</p>
+          <h3 class="font-bold text-lg mb-2">وب‌اپ رصد معاملات بورس کالا</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">مانیتورینگ لحظه‌ای معاملات و ارائه گزارشات خودکار</p>
           <div class="project-caption-collapsible" id="caption-sim2">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی سیستم رصد لحظه‌ای معاملات بورس کالا، پایش قیمت‌ها، حجم معاملات و روندهای بازار. این ابزار گزارشات هفتگی و ماهانه را به صورت خودکار تولید و به ذی‌نفعان ارسال می‌کند.</p>
-            <div class="project-tags">
-              <span class="project-tag">Streamlit</span>
-              <span class="project-tag">FastAPI</span>
-              <span class="project-tag">PostgreSQL</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی سیستم رصد لحظه‌ای معاملات بورس کالا، پایش قیمت‌ها، حجم معاملات و روندهای بازار. این ابزار گزارشات هفتگی و ماهانه را به صورت خودکار تولید و به ذی‌نفعان ارسال می‌کند.</p>
+            <div class="project-tags"><span class="project-tag">Streamlit</span><span class="project-tag">FastAPI</span><span class="project-tag">PostgreSQL</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-sim2', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -624,22 +480,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۷: تحلیل پورتفوی صندوق‌ها -->
+      <!-- پروژه ۷ -->
       <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="port.png" alt="تحلیل صورت وضعیت پورتفوی صندوق‌ها" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">تحلیل صورت وضعیت پورتفوی صندوق‌ها</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">بررسی ترکیب دارایی‌ها و عملکرد صندوق‌های سرمایه‌گذاری</p>
+          <h3 class="font-bold text-lg mb-2">تحلیل صورت وضعیت پورتفوی صندوق‌ها</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">بررسی ترکیب دارایی‌ها و عملکرد صندوق‌های سرمایه‌گذاری</p>
           <div class="project-caption-collapsible" id="caption-port">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">سیستم تحلیل صورت وضعیت پورتفوی صندوق‌های سیمانی و سایر صندوق‌های سرمایه‌گذاری، بررسی ترکیب دارایی‌ها، شناسایی تغییرات پرتفوی، تحلیل عملکرد و ریسک.</p>
-            <div class="project-tags">
-              <span class="project-tag">Pandas</span>
-              <span class="project-tag">Plotly</span>
-              <span class="project-tag">SQL</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">سیستم تحلیل صورت وضعیت پورتفوی صندوق‌های سیمانی و سایر صندوق‌های سرمایه‌گذاری، بررسی ترکیب دارایی‌ها، شناسایی تغییرات پرتفوی، تحلیل عملکرد و ریسک.</p>
+            <div class="project-tags"><span class="project-tag">Pandas</span><span class="project-tag">Plotly</span><span class="project-tag">SQL</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-port', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -648,23 +500,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۸: تحلیل احساسات اخبار -->
+      <!-- پروژه ۸ -->
       <div class="reveal reveal-delay-1 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="sent.PNG" alt="تحلیل احساسات اخبار" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">تحلیل احساسات اخبار مالی</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">Sentiment Analysis روی اخبار اقتصادی</p>
+          <h3 class="font-bold text-lg mb-2">تحلیل احساسات اخبار مالی</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Sentiment Analysis روی اخبار اقتصادی</p>
           <div class="project-caption-collapsible" id="caption-sent">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">پیاده‌سازی سیستم تحلیل احساسات روی اخبار مالی و اقتصادی با استفاده از مدل‌های زبانی، شناسایی روندهای خبری مثبت و منفی و تأثیر آن بر بازار.</p>
-            <div class="project-tags">
-              <span class="project-tag">NLP</span>
-              <span class="project-tag">MiniLM</span>
-              <span class="project-tag">FLask</span>
-              <span class="project-tag">Python</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">پیاده‌سازی سیستم تحلیل احساسات روی اخبار مالی و اقتصادی با استفاده از مدل‌های زبانی، شناسایی روندهای خبری مثبت و منفی و تأثیر آن بر بازار.</p>
+            <div class="project-tags"><span class="project-tag">NLP</span><span class="project-tag">MiniLM</span><span class="project-tag">FLask</span><span class="project-tag">Python</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-sent', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -673,22 +520,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۹: تحلیل شبکه‌های اجتماعی -->
+      <!-- پروژه ۹ -->
       <div class="reveal reveal-delay-2 project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="tel.png" alt="تحلیل شبکه‌های اجتماعی" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">تحلیل شبکه‌های اجتماعی</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">Social Listening و رصد کانال‌های تلگرامی</p>
+          <h3 class="font-bold text-lg mb-2">تحلیل شبکه‌های اجتماعی</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">Social Listening و رصد کانال‌های تلگرامی</p>
           <div class="project-caption-collapsible" id="caption-tel">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی سیستم رصد هوشمند کانال‌های تلگرامی و شبکه‌های اجتماعی، طراحی شاخص‌های آماری کاربردی، شناسایی روندها و سیگنال‌های مهم در حوزه مالی.</p>
-            <div class="project-tags">
-              <span class="project-tag">Telegram Bot</span>
-              <span class="project-tag">NLP</span>
-              <span class="project-tag">Streamlit</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی سیستم رصد هوشمند کانال‌های تلگرامی و شبکه‌های اجتماعی، طراحی شاخص‌های آماری کاربردی، شناسایی روندها و سیگنال‌های مهم در حوزه مالی.</p>
+            <div class="project-tags"><span class="project-tag">Telegram Bot</span><span class="project-tag">NLP</span><span class="project-tag">Streamlit</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-tel', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -697,22 +540,18 @@
         </div>
       </div>
 
-      <!-- پروژه ۱۰: دستیار خبری -->
+      <!-- پروژه ۱۰ -->
       <div class="reveal project-card bg-card rounded-lg border border-subtle overflow-hidden">
         <div class="project-image-wrapper">
           <span class="project-badge">فعال</span>
           <img src="asis.PNG" alt="چت‌بات دستیار خبری" class="w-full h-48 object-cover">
         </div>
         <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 font-[Vazirmatn]">چت‌بات دستیار خبری</h3>
-          <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">سیستم هوشمند تحلیل و پردازش اخبار</p>
+          <h3 class="font-bold text-lg mb-2">چت‌بات دستیار خبری</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">سیستم هوشمند تحلیل و پردازش اخبار</p>
           <div class="project-caption-collapsible" id="caption-asis">
-            <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed pt-3">طراحی چت‌بات هوشمند برای تحلیل و دسته‌بندی اخبار، پاسخگویی به سؤالات کاربران و ارائه خلاصه خبری خودکار با استفاده از مدل‌های زبانی و NLP.</p>
-            <div class="project-tags">
-              <span class="project-tag">NLP</span>
-              <span class="project-tag">FastAPI</span>
-              <span class="project-tag">Telegram Bot</span>
-            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed pt-3">طراحی چت‌بات هوشمند برای تحلیل و دسته‌بندی اخبار، پاسخگویی به سؤالات کاربران و ارائه خلاصه خبری خودکار با استفاده از مدل‌های زبانی و NLP.</p>
+            <div class="project-tags"><span class="project-tag">NLP</span><span class="project-tag">FastAPI</span><span class="project-tag">Telegram Bot</span></div>
           </div>
           <button class="read-more-btn" onclick="toggleCaption('caption-asis', this)">
             <span class="btn-text">بیشتر بخوانید</span>
@@ -721,22 +560,22 @@
         </div>
       </div>
 
-      <!-- پروژه ۱۱: نمونه‌کارهای تحلیلی مالی -->
+      <!-- پروژه ۱۱ -->
       <div class="reveal reveal-delay-1 project-card bg-card border border-subtle rounded-lg p-6 flex flex-col justify-center items-center text-center gap-3">
         <i data-lucide="folder-open" style="width:40px;height:40px" class="text-[#C9A96E]"></i>
-        <h3 class="font-bold text-lg font-[Vazirmatn]">سایر نمونه کار های تحلیلی و گزارشات بنیادی</h3>
-        <p class="text-sm text-zinc-400 font-[Vazirmatn]">تحلیل بنیادی، مدلسازی مالی، گزارشات اقتصادی</p>
-        <a href="https://drive.google.com/drive/folders/1or2jWvUi_5NcYmQQVtJa-lIENYgGWC30?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-[#00bfff] text-sm underline hover:text-white transition font-[Vazirmatn]">مشاهده در Google Drive</a>
+        <h3 class="font-bold text-lg">سایر نمونه کارهای تحلیلی و گزارشات بنیادی</h3>
+        <p class="text-sm text-zinc-400">تحلیل بنیادی، مدلسازی مالی، گزارشات اقتصادی</p>
+        <a href="https://drive.google.com/drive/folders/1or2jWvUi_5NcYmQQVtJa-lIENYgGWC30?usp=drive_link" target="_blank" rel="noopener noreferrer" class="text-[#00bfff] text-sm underline hover:text-white transition">مشاهده در Google Drive</a>
       </div>
 
-      <!-- پروژه ۱۲: سیستم‌های فعال شرکتی -->
+      <!-- پروژه ۱۲ -->
       <div class="reveal reveal-delay-2 project-card bg-card border border-subtle rounded-lg p-6 flex flex-col justify-center items-center text-center gap-3">
         <i data-lucide="server" style="width:40px;height:40px" class="text-[#4ade80]"></i>
-        <h3 class="font-bold text-lg font-[Vazirmatn]"> و +۷۰ پروژه فعال دیگر </h3>
-        <p class="text-sm text-zinc-400 font-[Vazirmatn] leading-relaxed">این پروژه ها درحال حاضر نیز در سرور های شرکت فعال می باشند</p>
+        <h3 class="font-bold text-lg">و +۷۰ پروژه فعال دیگر</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">این پروژه‌ها درحال حاضر نیز در سرورهای شرکت فعال می‌باشند</p>
         <div class="project-status">
           <span class="project-status-dot"></span>
-          <span>پروژه های تحلیل رفتار یونیت هولدر ها، عملکرد صندوق ها، تحلیل وضعیت سرمایه گذاری، لیزینگ ها و...</span>
+          <span>پروژه‌های تحلیل رفتار یونیت‌هولدرها، عملکرد صندوق‌ها، تحلیل وضعیت سرمایه‌گذاری، لیزینگ‌ها و...</span>
         </div>
       </div>
 
@@ -744,86 +583,28 @@
   </div>
 </section>
 
-<script>
-  function toggleCaption(captionId, btn) {
-    const caption = document.getElementById(captionId);
-    const btnText = btn.querySelector('.btn-text');
-    const isOpen = caption.classList.contains('open');
-    
-    if (isOpen) {
-      caption.classList.remove('open');
-      btn.classList.remove('active');
-      btnText.textContent = 'بیشتر بخوانید';
-    } else {
-      caption.classList.add('open');
-      btn.classList.add('active');
-      btnText.textContent = 'بستن';
-    }
-  }
-</script>
-
-
-<!-- تجربیات -->
 <!-- تجربیات -->
 <section id="experience" class="py-24 border-t border-subtle relative overflow-hidden">
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <div class="absolute top-10 right-1/4 w-80 h-80 bg-[#00bfff] rounded-full blur-[130px]"></div>
   </div>
-
-  <style>
-    .exp-timeline { position: relative; }
-    .exp-timeline::before { content: ''; position: absolute; top: 0; bottom: 0; right: 22px; width: 2px; background: linear-gradient(to bottom, rgba(0,191,255,0.4), rgba(201,169,110,0.3), rgba(0,191,255,0.2)); }
-    .exp-item { position: relative; padding-right: 60px; margin-bottom: 16px; }
-    .exp-dot { position: absolute; right: 12px; top: 20px; width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--bg-primary); background: #00bfff; box-shadow: 0 0 16px rgba(0,191,255,0.35); z-index: 2; }
-    .exp-dot.current { background: #C9A96E; box-shadow: 0 0 16px rgba(201,169,110,0.4); animation: expPulse 2.5s infinite; }
-    @keyframes expPulse { 0%, 100% { box-shadow: 0 0 16px rgba(201,169,110,0.4); } 50% { box-shadow: 0 0 28px rgba(201,169,110,0.7); } }
-    
-    .exp-card { background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden; transition: all 0.35s ease; cursor: pointer; }
-    .exp-card:hover { border-color: rgba(0,191,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    .exp-card.active { border-color: rgba(0,191,255,0.45); box-shadow: 0 12px 40px rgba(0,191,255,0.08); }
-    
-    .exp-header { padding: 18px 22px; display: flex; align-items: center; gap: 14px; user-select: none; }
-    .exp-date-badge { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; font-family: 'Vazirmatn', sans-serif; white-space: nowrap; flex-shrink: 0; }
-    .badge-current { background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
-    .badge-past { background: rgba(255,255,255,0.04); color: #999; border: 1px solid rgba(255,255,255,0.08); }
-    .exp-title { font-weight: 700; font-size: 15px; color: #fff; font-family: 'Vazirmatn', sans-serif; }
-    .exp-company { font-size: 12px; color: #00bfff; font-family: 'Vazirmatn', sans-serif; font-weight: 600; }
-    .exp-chevron { margin-right: auto; transition: transform 0.4s ease; color: #666; flex-shrink: 0; }
-    .exp-card.active .exp-chevron { transform: rotate(180deg); color: #00bfff; }
-    
-    .exp-body { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease; opacity: 0; }
-    .exp-card.active .exp-body { max-height: 4000px; opacity: 1; }
-    .exp-body-inner { padding: 0 22px 22px 22px; }
-    .exp-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 16px; }
-    
-    .exp-duty-section { margin-bottom: 14px; }
-    .exp-duty-section-title { font-size: 12px; font-weight: 700; color: #C9A96E; font-family: 'Vazirmatn', sans-serif; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .exp-duty-list { list-style: none; padding: 0; margin: 0; }
-    .exp-duty-list li { font-size: 12px; color: #aaa; font-family: 'Vazirmatn', sans-serif; line-height: 1.9; padding-right: 18px; position: relative; }
-    .exp-duty-list li::before { content: '▹'; position: absolute; right: 0; top: 0; color: #00bfff; font-size: 11px; }
-    .exp-duty-list li:hover { color: #ddd; }
-    
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-    .exp-tag { font-size: 10px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); color: #888; border: 1px solid rgba(255,255,255,0.08); font-family: 'Vazirmatn', sans-serif; }
-  </style>
-
   <div class="max-w-4xl mx-auto px-6 relative z-10">
     <div class="reveal flex items-center gap-4 mb-8">
-      <span class="text-xs text-[#00bfff] tracking-widest uppercase font-[Vazirmatn]">۰۴</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">سوابق شغلی</h2>
+      <span class="text-xs text-[#00bfff] tracking-widest uppercase">۰۴</span>
+      <h2 class="text-3xl md:text-4xl font-bold">سوابق شغلی</h2>
     </div>
-    <p class="reveal text-zinc-400 mb-12 font-[Vazirmatn] text-sm leading-relaxed">
+    <p class="reveal text-zinc-400 mb-12 text-sm leading-relaxed">
       برای مشاهده شرح وظایف کامل هر سمت، روی آن <span class="text-[#00bfff] font-semibold">کلیک کنید</span>.
     </p>
 
     <div class="exp-timeline">
       
-      <!-- شغل ۱: تاکسین پارت -->
+      <!-- شغل ۱ -->
       <div class="reveal exp-item">
         <div class="exp-dot current"></div>
         <div class="exp-card" onclick="toggleExp(this)">
           <div class="exp-header">
-            <span class="exp-date-badge badge-current">خرداد ۱۴۰۵  – تاکنون</span>
+            <span class="exp-date-badge badge-current">خرداد ۱۴۰۵ – تاکنون</span>
             <div>
               <h3 class="exp-title">تحلیلگر داده‌های کسب‌وکار</h3>
               <p class="exp-company">شرکت تاکسین پارت</p>
@@ -834,7 +615,7 @@
             <div class="exp-body-inner">
               <div class="exp-divider"></div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📊 تحلیل مشتری و فروش</div>
+                <div class="exp-duty-section-title">تحلیل مشتری و فروش</div>
                 <ul class="exp-duty-list">
                   <li>تحلیل رفتار مشتریان و شناسایی الگوهای خرید</li>
                   <li>تحلیل کلان داده‌های رانندگان تاکسی و عملکرد آنها</li>
@@ -844,7 +625,7 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">🖥️ داشبوردها و سیستم‌ها</div>
+                <div class="exp-duty-section-title">داشبوردها و سیستم‌ها</div>
                 <ul class="exp-duty-list">
                   <li>طراحی داشبوردهای مدیریتی برای رصد KPIهای فروش</li>
                   <li>پیاده‌سازی سیستم‌های هشدار فروش و پایش لحظه‌ای</li>
@@ -853,23 +634,18 @@
                   <li>ارائه صورت جریان وجوه نقد به صورت سیستمی و خودکار</li>
                 </ul>
               </div>
-              <div class="exp-tags">
-                <span class="exp-tag">Streamlit</span>
-                <span class="exp-tag">Pandas</span>
-                <span class="exp-tag">SQL</span>
-                <span class="exp-tag">Plotly</span>
-              </div>
+              <div class="exp-tags"><span class="exp-tag">Streamlit</span><span class="exp-tag">Pandas</span><span class="exp-tag">SQL</span><span class="exp-tag">Plotly</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- شغل ۲: سبدگردان قلک -->
+      <!-- شغل ۲ -->
       <div class="reveal exp-item">
         <div class="exp-dot current"></div>
         <div class="exp-card" onclick="toggleExp(this)">
           <div class="exp-header">
-            <span class="exp-date-badge badge-current">اسفند ۱۴۰۴  – تاکنون</span>
+            <span class="exp-date-badge badge-current">اسفند ۱۴۰۴ – تاکنون</span>
             <div>
               <h3 class="exp-title">برنامه‌نویس و تحلیلگر مالی</h3>
               <p class="exp-company">سبدگردان قلک</p>
@@ -880,7 +656,7 @@
             <div class="exp-body-inner">
               <div class="exp-divider"></div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📈 داشبوردهای صندوق‌های سرمایه‌گذاری</div>
+                <div class="exp-duty-section-title">داشبوردهای صندوق‌های سرمایه‌گذاری</div>
                 <ul class="exp-duty-list">
                   <li>طراحی داشبورد رصد معاملات سیمان در بورس کالا</li>
                   <li>طراحی داشبورد صندوق‌های سمان، همتا، پایا، نیروانا برای تحلیل عملکرد</li>
@@ -889,7 +665,7 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">🏭 تحلیل صنعت سیمان و بورس کالا</div>
+                <div class="exp-duty-section-title">تحلیل صنعت سیمان و بورس کالا</div>
                 <ul class="exp-duty-list">
                   <li>استخراج قیمت کامودیتی‌ها از نشریه پلتس (Platts) به صورت خودکار</li>
                   <li>خودکارسازی گزارشات ماهانه تولید، فروش و نرخ شرکت‌های سیمانی</li>
@@ -899,7 +675,7 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">💰 تحلیل پورتفوی و بازدهی</div>
+                <div class="exp-duty-section-title">تحلیل پورتفوی و بازدهی</div>
                 <ul class="exp-duty-list">
                   <li>پیاده‌سازی سامانه مدیریت سبدها با ارائه صورت وضعیت از سامانه سبدیار</li>
                   <li>تحلیل عملکرد کلی سبدهای تحت مدیریت و روند سود و زیان</li>
@@ -908,7 +684,7 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📊 تحلیل رفتار و اوراق</div>
+                <div class="exp-duty-section-title">تحلیل رفتار و اوراق</div>
                 <ul class="exp-duty-list">
                   <li>پیاده‌سازی داشبورد معاملات اوراق دولتی</li>
                   <li>وب‌اپ تحلیل رفتار یونیت‌هولدرهای صندوق</li>
@@ -917,24 +693,18 @@
                   <li>وب‌اپ تحلیل سبد سرمایه‌گذاری شرکت</li>
                 </ul>
               </div>
-              <div class="exp-tags">
-                <span class="exp-tag">Streamlit</span>
-                <span class="exp-tag">FastAPI</span>
-                <span class="exp-tag">PostgreSQL</span>
-                <span class="exp-tag">Platts</span>
-                <span class="exp-tag">سبدیار</span>
-              </div>
+              <div class="exp-tags"><span class="exp-tag">Streamlit</span><span class="exp-tag">FastAPI</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Platts</span><span class="exp-tag">سبدیار</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- شغل ۳: کارشناس ارشد تحلیل داده — DataVest -->
+      <!-- شغل ۳ -->
       <div class="reveal exp-item">
         <div class="exp-dot"></div>
         <div class="exp-card" onclick="toggleExp(this)">
           <div class="exp-header">
-            <span class="exp-date-badge badge-past">مهر ۱۴۰۳ – اسفند ۱۴۰۴ </span>
+            <span class="exp-date-badge badge-past">مهر ۱۴۰۳ – اسفند ۱۴۰۴</span>
             <div>
               <h3 class="exp-title">کارشناس ارشد تحلیل داده</h3>
               <p class="exp-company">DataVest</p>
@@ -945,7 +715,7 @@
             <div class="exp-body-inner">
               <div class="exp-divider"></div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">🔍 تحلیل مالی و بنیادی</div>
+                <div class="exp-duty-section-title">تحلیل مالی و بنیادی</div>
                 <ul class="exp-duty-list">
                   <li>تحلیل جزئی شرکت‌ها و صنایع مختلف</li>
                   <li>تحلیل بنیادی و تهیه گزارشات تخصصی</li>
@@ -955,7 +725,7 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">🤖 هوش مصنوعی و اتوماسیون</div>
+                <div class="exp-duty-section-title">هوش مصنوعی و اتوماسیون</div>
                 <ul class="exp-duty-list">
                   <li>طراحی پنل‌ها و نسخه‌های MVP محصولات</li>
                   <li>تولید گزارشات مالی خودکار</li>
@@ -965,19 +735,13 @@
                   <li>طراحی مدل‌های پیش‌بینی برای صندوق‌ها</li>
                 </ul>
               </div>
-              <div class="exp-tags">
-                <span class="exp-tag">Python</span>
-                <span class="exp-tag">MQL</span>
-                <span class="exp-tag">NLP</span>
-                <span class="exp-tag">Copula</span>
-                <span class="exp-tag">FastAPI</span>
-              </div>
+              <div class="exp-tags"><span class="exp-tag">Python</span><span class="exp-tag">MQL</span><span class="exp-tag">NLP</span><span class="exp-tag">Copula</span><span class="exp-tag">FastAPI</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- شغل ۴: کارشناس تحلیل داده — DataVest -->
+      <!-- شغل ۴ -->
       <div class="reveal exp-item">
         <div class="exp-dot"></div>
         <div class="exp-card" onclick="toggleExp(this)">
@@ -993,7 +757,7 @@
             <div class="exp-body-inner">
               <div class="exp-divider"></div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📊 تحلیل و اتوماسیون</div>
+                <div class="exp-duty-section-title">تحلیل و اتوماسیون</div>
                 <ul class="exp-duty-list">
                   <li>خودکارسازی گزارشات کانال تلگرامی</li>
                   <li>طراحی داشبوردهای تحلیلی</li>
@@ -1002,25 +766,20 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">🧠 پردازش متن و تحلیل احساسات</div>
+                <div class="exp-duty-section-title">پردازش متن و تحلیل احساسات</div>
                 <ul class="exp-duty-list">
                   <li>تحلیل احساسات و برچسب‌گذاری هوشمند اخبار</li>
                   <li>مانیتورینگ اخبار و رصد خودکار منابع خبری</li>
                   <li>پردازش و طبقه‌بندی هوشمند محتوای متنی</li>
                 </ul>
               </div>
-              <div class="exp-tags">
-                <span class="exp-tag">Streamlit</span>
-                <span class="exp-tag">NLP</span>
-                <span class="exp-tag">Telegram Bot</span>
-                <span class="exp-tag">Pandas</span>
-              </div>
+              <div class="exp-tags"><span class="exp-tag">Streamlit</span><span class="exp-tag">NLP</span><span class="exp-tag">Telegram Bot</span><span class="exp-tag">Pandas</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- شغل ۵: کارآموز تحلیل داده — DataVest -->
+      <!-- شغل ۵ -->
       <div class="reveal exp-item">
         <div class="exp-dot"></div>
         <div class="exp-card" onclick="toggleExp(this)">
@@ -1036,7 +795,7 @@
             <div class="exp-body-inner">
               <div class="exp-divider"></div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📝 تحلیل مالی و محتوا</div>
+                <div class="exp-duty-section-title">تحلیل مالی و محتوا</div>
                 <ul class="exp-duty-list">
                   <li>تحلیل‌های مالی و تهیه گزارشات اولیه</li>
                   <li>تهیه گزارشات صندوق‌های سرمایه‌گذاری</li>
@@ -1045,19 +804,14 @@
                 </ul>
               </div>
               <div class="exp-duty-section">
-                <div class="exp-duty-section-title">📊 یادگیری عملی</div>
+                <div class="exp-duty-section-title">یادگیری عملی</div>
                 <ul class="exp-duty-list">
                   <li>آشنایی عملی با فرآیندهای تحلیل داده در حوزه مالی</li>
                   <li>مشارکت در پروژه‌های داده‌کاوی و تحلیل</li>
                   <li>آموزش ابزارهای تخصصی تحلیل داده</li>
                 </ul>
               </div>
-              <div class="exp-tags">
-                <span class="exp-tag">WordPress</span>
-                <span class="exp-tag">SEO</span>
-                <span class="exp-tag">Excel</span>
-                <span class="exp-tag">Python</span>
-              </div>
+              <div class="exp-tags"><span class="exp-tag">WordPress</span><span class="exp-tag">SEO</span><span class="exp-tag">Excel</span><span class="exp-tag">Python</span></div>
             </div>
           </div>
         </div>
@@ -1067,22 +821,8 @@
   </div>
 </section>
 
-<script>
-  function toggleExp(card) {
-    const wasActive = card.classList.contains('active');
-    // بستن همه کارت‌ها (اختیاری — اگه می‌خوای فقط یکی باز باشه)
-    document.querySelectorAll('.exp-card').forEach(c => c.classList.remove('active'));
-    // باز کردن کارت کلیک‌شده (اگه قبلاً بسته بود)
-    if (!wasActive) {
-      card.classList.add('active');
-    }
-  }
-</script>
-
-<!-- مهارت‌ها -->
 <!-- مهارت‌ها -->
 <section id="skills" class="py-24 border-t border-subtle relative overflow-hidden">
-  <!-- ذرات پس‌زمینه -->
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <div class="absolute top-20 left-10 w-72 h-72 bg-[#00bfff] rounded-full blur-[120px]"></div>
     <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#C9A96E] rounded-full blur-[150px]"></div>
@@ -1090,221 +830,112 @@
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="reveal flex items-center gap-4 mb-8">
-      <span class="text-xs text-[#00bfff] tracking-widest uppercase font-[Vazirmatn]">۰۵</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">مهارت‌های تخصصی</h2>
+      <span class="text-xs text-[#00bfff] tracking-widest uppercase">۰۵</span>
+      <h2 class="text-3xl md:text-4xl font-bold">مهارت‌های تخصصی</h2>
     </div>
-    <p class="reveal text-zinc-400 mb-10 max-w-2xl font-[Vazirmatn] text-sm leading-relaxed">
+    <p class="reveal text-zinc-400 mb-10 max-w-2xl text-sm leading-relaxed">
       تمامی مهارت‌های زیر در <span class="text-[#00bfff] font-semibold">پروژه‌های واقعی</span> پیاده‌سازی شده و مسیر یادگیری همچنان ادامه دارد. برای مشاهده جزئیات هر بخش، روی زبانه مورد نظر کلیک کنید.
     </p>
 
-    <style>
-      /* تب‌های ناوبری */
-      .skills-tabs-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-      .skills-tab-btn { padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #999; font-family: 'Vazirmatn', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.35s ease; white-space: nowrap; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px; }
-      .skills-tab-btn:hover { border-color: rgba(0,191,255,0.35); color: #ccc; background: rgba(0,191,255,0.05); }
-      .skills-tab-btn.active { background: rgba(0,191,255,0.12); border-color: #00bfff; color: #00bfff; font-weight: 600; box-shadow: 0 4px 20px rgba(0,191,255,0.12); }
-      .skills-tab-btn .tab-icon { font-size: 16px; }
-      .skills-tab-count { font-size: 10px; background: rgba(0,191,255,0.2); color: #00bfff; padding: 2px 8px; border-radius: 20px; margin-right: 4px; }
-      .skills-tab-btn.active .skills-tab-count { background: #00bfff; color: #0A0A0B; }
-
-      /* محتوای تب */
-      .skills-tab-content { display: none; animation: tabFadeIn 0.5s ease; }
-      .skills-tab-content.active { display: block; }
-      @keyframes tabFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-
-      /* کارت مهارت */
-      .skill-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 18px; transition: all 0.3s ease; position: relative; overflow: hidden; }
-      .skill-card:hover { background: rgba(0,191,255,0.03); border-color: rgba(0,191,255,0.18); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
-      .skill-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: background 0.3s; }
-      .skill-card:hover::before { background: #00bfff; }
-
-      /* نوار سطح */
-      .skill-level-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-left: 6px; }
-      .dot-proficient { background: #00bfff; box-shadow: 0 0 8px rgba(0,191,255,0.5); }
-      .dot-good { background: #C9A96E; box-shadow: 0 0 6px rgba(201,169,110,0.4); }
-      .dot-intermediate { background: #7c7c8a; }
-      .dot-learning { background: #4a4a55; border: 1px dashed #666; }
-
-      .level-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; font-family: 'Vazirmatn', sans-serif; }
-      .badge-proficient { background: rgba(0,191,255,0.15); color: #00bfff; border: 1px solid rgba(0,191,255,0.25); }
-      .badge-good { background: rgba(201,169,110,0.15); color: #C9A96E; border: 1px solid rgba(201,169,110,0.25); }
-      .badge-intermediate { background: rgba(255,255,255,0.05); color: #999; border: 1px solid rgba(255,255,255,0.1); }
-      .badge-learning { background: rgba(255,255,255,0.02); color: #777; border: 1px dashed rgba(255,255,255,0.12); }
-
-      /* زیربخش‌ها */
-      .skill-subsection { margin-bottom: 24px; }
-      .skill-subsection-title { font-size: 14px; font-weight: 600; color: #aaa; margin-bottom: 12px; font-family: 'Vazirmatn', sans-serif; display: flex; align-items: center; gap: 8px; }
-      .skill-subsection-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
-
-      /* نقل‌قول */
-      .humble-note { background: rgba(0,191,255,0.04); border: 1px solid rgba(0,191,255,0.12); border-radius: 12px; padding: 18px 24px; margin-top: 28px; display: flex; align-items: flex-start; gap: 12px; }
-    </style>
-
     <!-- تب‌های ناوبری -->
     <div class="reveal skills-tabs-nav" id="skillsTabsNav">
-      <button class="skills-tab-btn active" data-tab="tab-data-ai">
-        <span class="skills-tab-count">۱۲</span> 📊 تحلیل داده و هوش مصنوعی
-      </button>
-      <button class="skills-tab-btn" data-tab="tab-programming">
-        <span class="skills-tab-count">۱۴</span> 💻 برنامه‌نویسی و توسعه
-      </button>
-      <button class="skills-tab-btn" data-tab="tab-finance">
-        <span class="skills-tab-count">۱۸</span> 📈 مالی و بازار سرمایه
-      </button>
-      <button class="skills-tab-btn" data-tab="tab-systems">
-        <span class="skills-tab-count">۸</span> 🏢 سیستم‌های سازمانی
-      </button>
-      <button class="skills-tab-btn" data-tab="tab-learning">
-        <span class="skills-tab-count">۳</span> 🔬 در حال یادگیری
-      </button>
+      <button class="skills-tab-btn active" data-tab="tab-data-ai"><span class="skills-tab-count">۱۲</span> تحلیل داده و هوش مصنوعی</button>
+      <button class="skills-tab-btn" data-tab="tab-programming"><span class="skills-tab-count">۱۴</span> برنامه‌نویسی و توسعه</button>
+      <button class="skills-tab-btn" data-tab="tab-finance"><span class="skills-tab-count">۱۸</span> مالی و بازار سرمایه</button>
+      <button class="skills-tab-btn" data-tab="tab-systems"><span class="skills-tab-count">۸</span> سیستم‌های سازمانی</button>
+      <button class="skills-tab-btn" data-tab="tab-learning"><span class="skills-tab-count">۳</span> در حال یادگیری</button>
     </div>
 
-    <!-- ==================== تب ۱: تحلیل داده و مهندسی داده ==================== -->
+    <!-- تب ۱: تحلیل داده و مهندسی داده -->
     <div class="reveal skills-tab-content active" id="tab-data-ai">
-
-
-
-      <!-- زیربخش ۱: مهندسی داده و ذخیره‌سازی -->
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🏗️ Data Engineering & Storage</div>
+        <div class="skill-subsection-title">Data Engineering & Storage</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Python — Pandas, Polars, NumPy, streamlit </span>
-              <span class="level-badge badge-proficient font-[Vazirmatn]">مسلط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پاکسازی و تحلیل داده‌های حجیم، بهینه‌سازی عملکرد، عملیات برداری</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Python — Pandas, Polars, NumPy, Streamlit</span><span class="level-badge badge-proficient">مسلط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پاکسازی و تحلیل داده‌های حجیم، بهینه‌سازی عملکرد، عملیات برداری</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">SQL — PostgreSQL, SQLite, MySQL</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">کوئری‌نویسی پیشرفته، طراحی Schema، بهینه‌سازی، Window Functions، CTE</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">SQL — PostgreSQL, SQLite, MySQL</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">کوئری‌نویسی پیشرفته، طراحی Schema، بهینه‌سازی، Window Functions، CTE</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">ETL/ELT Pipelines</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی و پیاده‌سازی خطوط استخراج، تبدیل و بارگذاری داده — از منبع تا مقصد</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">ETL/ELT Pipelines</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی و پیاده‌سازی خطوط استخراج، تبدیل و بارگذاری داده — از منبع تا مقصد</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Data Modeling & Warehousing</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">مدل‌سازی داده، Star & Snowflake Schema، مفاهیم OLTP/OLAP، Data Lake/Lakehouse</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Data Modeling & Warehousing</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">مدل‌سازی داده، Star & Snowflake Schema، مفاهیم OLTP/OLAP، Data Lake/Lakehouse</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Data Quality & Validation</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پاک‌سازی، اعتبارسنجی، تشخیص outlier، مدیریت missing data و یکپارچه‌سازی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Data Quality & Validation</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پاک‌سازی، اعتبارسنجی، تشخیص outlier، مدیریت missing data و یکپارچه‌سازی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Data Integration & Storage</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">ترکیب منابع داده ناهمگون، طراحی لایه‌های ذخیره‌سازی، Data Lifecycle Management</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Data Integration & Storage</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">ترکیب منابع داده ناهمگون، طراحی لایه‌های ذخیره‌سازی، Data Lifecycle Management</p>
           </div>
         </div>
       </div>
 
-      <!-- زیربخش ۲: جمع‌آوری داده و Backend -->
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🌐 Data Collection & Backend Development</div>
+        <div class="skill-subsection-title">Data Collection & Backend Development</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Web Scraping (Selenium, BS4, Requests)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">استخراج سیستماتیک از وب‌سایت‌های مالی: کدال، TSETMC، فیپیران، TSE، SENA، TGJU</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Web Scraping (Selenium, BS4, Requests)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">استخراج سیستماتیک از وب‌سایت‌های مالی: کدال، TSETMC، فیپیران، TSE، SENA، TGJU</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">API Development — FastAPI, REST API</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی و توسعه APIهای سبک و مقیاس‌پذیر برای سرویس‌های داده و مالی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">API Development — FastAPI, REST API</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی و توسعه APIهای سبک و مقیاس‌پذیر برای سرویس‌های داده و مالی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Server-Side & Deployment</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">استقرار اپلیکیشن‌ها، Client-Server Architecture، پیکربندی سرور</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Server-Side & Deployment</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">استقرار اپلیکیشن‌ها، Client-Server Architecture، پیکربندی سرور</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Redis, Kafka, Docker</span>
-              <span class="level-badge badge-learning font-[Vazirmatn]">در حال یادگیری</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">Caching، Event Streaming و Containerization — در مسیر یادگیری</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Redis, Kafka, Docker</span><span class="level-badge badge-learning">در حال یادگیری</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">Caching، Event Streaming و Containerization — در مسیر یادگیری</p>
           </div>
         </div>
       </div>
 
-
-      <!-- زیربخش ۳: تحلیل، هوش تصمیم‌گیری و بینش -->
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🧠 Analytics & Decision Intelligence</div>
+        <div class="skill-subsection-title">Analytics & Decision Intelligence</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Machine Learning (Scikit-learn)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">Feature Engineering، Regression، Classification — مدل‌های پیش‌بینی در حوزه مالی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Machine Learning (Scikit-learn)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">Feature Engineering، Regression، Classification — مدل‌های پیش‌بینی در حوزه مالی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Econometrics — Statsmodels, Stata, JMP</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">مدل‌های اقتصادسنجی، تحلیل سری‌های زمانی، آزمون فرضیه، مدل‌های رگرسیونی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Econometrics — Statsmodels, Stata, JMP</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">مدل‌های اقتصادسنجی، تحلیل سری‌های زمانی، آزمون فرضیه، مدل‌های رگرسیونی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">NLP & Sentiment Analysis</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پردازش متن فارسی و انگلیسی، تحلیل احساسات اخبار، Social Listening مالی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">NLP & Sentiment Analysis</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پردازش متن فارسی و انگلیسی، تحلیل احساسات اخبار، Social Listening مالی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">KPI & Metrics Design</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی شاخص‌های کلیدی عملکرد، معیارهای ارزیابی و سیستم‌های پایش</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">KPI & Metrics Design</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی شاخص‌های کلیدی عملکرد، معیارهای ارزیابی و سیستم‌های پایش</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Raw Data → Actionable Insights</span>
-              <span class="level-badge badge-proficient font-[Vazirmatn]">تخصص محوری</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">تبدیل داده‌های خام به بینش‌های عملیاتی و قابل اقدام برای تصمیم‌گیری</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Raw Data → Actionable Insights</span><span class="level-badge badge-proficient">تخصص محوری</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">تبدیل داده‌های خام به بینش‌های عملیاتی و قابل اقدام برای تصمیم‌گیری</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Data Storytelling & Visualization</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">ارائه بصری یافته‌های پیچیده، Plotly، روایت‌گری داده برای ذی‌نفعان</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Data Storytelling & Visualization</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">ارائه بصری یافته‌های پیچیده، Plotly، روایت‌گری داده برای ذی‌نفعان</p>
           </div>
         </div>
       </div>
 
-      <!-- جمع‌بندی توانمندی محوری -->
       <div class="reveal mt-8" style="background: linear-gradient(135deg, rgba(0,191,255,0.06), rgba(201,169,110,0.04)); border: 1px solid rgba(0,191,255,0.15); border-radius: 14px; padding: 24px 28px;">
         <div class="flex items-start gap-4">
-          <div class="text-3xl flex-shrink-0">🌱</div>
+          <div class="flex-shrink-0 mt-1"><i data-lucide="sprout" style="width:28px;height:28px;color:#00bfff;"></i></div>
           <div>
-            <h4 class="text-[#00bfff] font-bold text-base font-[Vazirmatn] mb-3">اولویت من</h4>
-            <p class="text-zinc-300 text-sm font-[Vazirmatn] leading-relaxed">
+            <h4 class="text-[#00bfff] font-bold text-base mb-3">اولویت من</h4>
+            <p class="text-zinc-300 text-sm leading-relaxed">
               صادقانه <span class="text-[#C9A96E] font-semibold">با ارزش‌ترین ویژگی برای من در حال حاضر یادگیری است.</span> 
               باور دارم که <span class="text-white">فرصت‌های بی‌نظیر و بسیار با ارزشی برای آموختن از آدم‌های باتجربه وجود دارد</span> 
               و <span class="text-[#00bfff] font-bold">حقیقتاً یاد گرفتن از دیگران برای من در اولویت است.</span> 
@@ -1313,502 +944,281 @@
           </div>
         </div>
       </div>
-
     </div>
-    <!-- ==================== پایان تب ۱ ==================== -->
-    <!-- ==================== پایان تب ۱ ==================== -->
 
-    <!-- ==================== تب ۲: برنامه‌نویسی و توسعه ==================== -->
+    <!-- تب ۲: برنامه‌نویسی و توسعه -->
     <div class="reveal skills-tab-content" id="tab-programming">
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🖥️ زبان‌ها و فریم‌ورک‌ها</div>
+        <div class="skill-subsection-title">زبان‌ها و فریم‌ورک‌ها</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Python</span>
-              <span class="level-badge badge-proficient font-[Vazirmatn]">مسلط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">زبان اصلی — کتابخانه‌های تحلیلی، مالی، وب و هوش مصنوعی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Python</span><span class="level-badge badge-proficient">مسلط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">زبان اصلی — کتابخانه‌های تحلیلی، مالی، وب و هوش مصنوعی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Streamlit فریم ورک</span>
-              <span class="level-badge badge-proficient font-[Vazirmatn]">مسلط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">داشبوردهای تعاملی  و رابط کاربری— +۱۵۰ پروژه عملیاتی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Streamlit فریم‌ورک</span><span class="level-badge badge-proficient">مسلط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">داشبوردهای تعاملی و رابط کاربری — +۱۵۰ پروژه عملیاتی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">MQL (MetaTrader 4)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">اندیکاتور، اکسپرت و استراتژی‌های معاملات الگوریتمی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">MQL (MetaTrader 4)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">اندیکاتور، اکسپرت و استراتژی‌های معاملات الگوریتمی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">FastAPI</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">توسعه APIهای RESTful برای سرویس‌های داده و مالی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">FastAPI</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">توسعه APIهای RESTful برای سرویس‌های داده و مالی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">HTML & CSS</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی UI/UX، وب‌اپلیکیشن‌ها و داشبوردهای واکنش‌گرا</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">HTML & CSS</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی UI/UX، وب‌اپلیکیشن‌ها و داشبوردهای واکنش‌گرا</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Plotly Dash</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">داشبوردهای تحت وب با قابلیت‌های تعاملی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Plotly Dash</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">داشبوردهای تحت وب با قابلیت‌های تعاملی</p>
           </div>
         </div>
       </div>
 
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🗄️ پایگاه‌های داده</div>
+        <div class="skill-subsection-title">پایگاه‌های داده</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">PostgreSQL</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی پایگاه داده، کوئری‌های پیشرفته، بهینه‌سازی — پروژه‌های عملیاتی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">PostgreSQL</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی پایگاه داده، کوئری‌های پیشرفته، بهینه‌سازی — پروژه‌های عملیاتی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">SQLite</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پایگاه داده سبک برای پروژه‌های تحلیلی و اپلیکیشن‌ها</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">SQLite</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پایگاه داده سبک برای پروژه‌های تحلیلی و اپلیکیشن‌ها</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">MySQL / SQL Server</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">مدیریت و کوئری‌نویسی در پایگاه‌های رابطه‌ای</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">MySQL / SQL Server</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">مدیریت و کوئری‌نویسی در پایگاه‌های رابطه‌ای</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Oracle NoSQL</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">آشنایی با پایگاه‌های داده غیررابطه‌ای</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Oracle NoSQL</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">آشنایی با پایگاه‌های داده غیررابطه‌ای</p>
           </div>
         </div>
       </div>
 
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🛠️ ابزارها و سرویس‌ها</div>
+        <div class="skill-subsection-title">ابزارها و سرویس‌ها</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Git & GitHub</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">کنترل نسخه، مشارکت تیمی و استقرار پروژه</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Git & GitHub</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">کنترل نسخه، مشارکت تیمی و استقرار پروژه</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Power BI</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">گزارش‌های مدیریتی و داشبوردهای سازمانی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Power BI</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">گزارش‌های مدیریتی و داشبوردهای سازمانی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">Google Looker Studio</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">داشبوردهای ابری با اتصال به Google Sheets، BigQuery و SQL</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">Google Looker Studio</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">داشبوردهای ابری با اتصال به Google Sheets، BigQuery و SQL</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">WordPress</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی و مدیریت سایت با المنتور و بهینه‌سازی SEO</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">WordPress</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی و مدیریت سایت با المنتور و بهینه‌سازی SEO</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ==================== تب ۳: مالی و بازار سرمایه ==================== -->
+    <!-- تب ۳: مالی و بازار سرمایه -->
     <div class="reveal skills-tab-content" id="tab-finance">
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">📊 تحلیل و مدل‌سازی مالی</div>
+        <div class="skill-subsection-title">تحلیل و مدل‌سازی مالی</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">تحلیل بنیادی (فولاد، سیمان)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">تهیه گزارشات بنیادی، تجزیه و تحلیل صورت‌های مالی و نسبت‌های مالی و تحلیل های وضعیت شرکت و تخمین درآمد ها و آشنایی با زنجیره تولید این دو صنعت </p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">تحلیل بنیادی (فولاد، سیمان)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">تهیه گزارشات بنیادی، تجزیه و تحلیل صورت‌های مالی و نسبت‌های مالی، تحلیل‌های وضعیت شرکت، تخمین درآمدها و آشنایی با زنجیره تولید این دو صنعت</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">مدل‌سازی مالی ETF</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی مدل‌های مالی صندوق‌های سرمایه‌گذاری قابل معامله</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">مدل‌سازی مالی ETF</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی مدل‌های مالی صندوق‌های سرمایه‌گذاری قابل معامله</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">اقتصادسنجی (Stata, JMP, python)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">مدل‌سازی اقتصادسنجی، تحلیل رگرسیون، مدل های پیشرفته غیرخطی کاپیولا و توابع مفصلی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">اقتصادسنجی (Stata, JMP, Python)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">مدل‌سازی اقتصادسنجی، تحلیل رگرسیون، مدل‌های پیشرفته غیرخطی کاپیولا و توابع مفصلی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">تحلیل سری‌های زمانی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پیش‌بینی روندها، شناسایی الگوهای فصلی و cyclical</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">تحلیل سری‌های زمانی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پیش‌بینی روندها، شناسایی الگوهای فصلی و چرخه‌ای</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">محاسبات کرک اسپرد</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">استخراج خودکار نرخ‌های پتروشیمی و تحلیل حاشیه سود کامودیتی ها  از نشریه پلت</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">محاسبات کرک اسپرد</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">استخراج خودکار نرخ‌های پتروشیمی و تحلیل حاشیه سود کامودیتی‌ها از نشریه پلتس</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">محاسبات اوراق و اکچوئری</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">محاسبه دیرش (Duration)، ارزش فعلی، منحنی بازده و قیمت‌گذاری اوراق</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">محاسبات اوراق و اکچوئری</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">محاسبه دیرش (Duration)، ارزش فعلی، منحنی بازده و قیمت‌گذاری اوراق</p>
           </div>
         </div>
       </div>
 
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🏦 بازار سرمایه و ابزارهای مالی</div>
+        <div class="skill-subsection-title">بازار سرمایه و ابزارهای مالی</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">ابزارهای مالی متنوع</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">آشنایی با سهام، اوراق درآمد ثابت، صندوق‌های ETF، اختیار معامله و قراردادهای آتی</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">ابزارهای مالی متنوع</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">آشنایی با سهام، اوراق درآمد ثابت، صندوق‌های ETF، اختیار معامله و قراردادهای آتی</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">سازوکارهای معاملاتی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">آشنایی با ریزساختار بازار، مکانیزم حراج، سفارش‌گذاری و تسویه</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">سازوکارهای معاملاتی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">آشنایی با ریزساختار بازار، مکانیزم حراج، سفارش‌گذاری و تسویه</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">سبدگردانی و مدیریت دارایی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">تحلیل رفتار یونیت‌هولدرها، رصد مالکیت‌ها، سیستم‌های مدیریت سبد</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">سبدگردانی و مدیریت دارایی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">تحلیل رفتار یونیت‌هولدرها، رصد مالکیت‌ها، سیستم‌های مدیریت سبد</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">بازار آپشن (Option Market)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">استراتژی‌های بازار مشتقه، طراحی داشبوردهای رصد اختیار معامل برای استراتژی کاوردکالITM</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">بازار آپشن (Option Market)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">استراتژی‌های بازار مشتقه، طراحی داشبوردهای رصد اختیار معامله برای استراتژی کاوردکال ITM</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">معاملات الگوریتمی (MQL)</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">اندیکاتورهای هوشمند، اکسپرت و استراتژی‌های خودکار در MetaTrader 4</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">معاملات الگوریتمی (MQL)</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">اندیکاتورهای هوشمند، اکسپرت و استراتژی‌های خودکار در MetaTrader 4</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">سیستم‌های OMS و سبدیار</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">کار با نرم‌افزارهای مدیریت سفارش و سامانه‌های مدیریت سبد سرمایه‌گذاری</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">سیستم‌های OMS و سبدیار</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">کار با نرم‌افزارهای مدیریت سفارش و سامانه‌های مدیریت سبد سرمایه‌گذاری</p>
           </div>
         </div>
       </div>
 
       <div class="skill-subsection">
-        <div class="skill-subsection-title font-[Vazirmatn]">🔍 داده‌های مالی و هوشمندسازی</div>
+        <div class="skill-subsection-title">داده‌های مالی و هوشمندسازی</div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">جمع‌آوری خودکار داده‌های مالی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">استخراج سیستماتیک از کدال، TSETMC، فیپیران، TSE، SENA، Yahoo Finance، TGJU</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">جمع‌آوری خودکار داده‌های مالی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">استخراج سیستماتیک از کدال، TSETMC، فیپیران، TSE، SENA، Yahoo Finance، TGJU</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">داده‌های ساختاریافته و غیرساختاریافته</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">کار با داده‌های جدولی (صورت‌های مالی)، متنی (اخبار، گزارشات) و گرافیکی (نمودارها)</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">داده‌های ساختاریافته و غیرساختاریافته</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">کار با داده‌های جدولی (صورت‌های مالی)، متنی (اخبار، گزارشات) و گرافیکی (نمودارها)</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">رصد اخبار و شبکه‌های اجتماعی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">Social Listening در حوزه مالی، تحلیل کانال‌های تلگرامی و سیگنال‌های خبری</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">رصد اخبار و شبکه‌های اجتماعی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">Social Listening در حوزه مالی، تحلیل کانال‌های تلگرامی و سیگنال‌های خبری</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">تحلیل تراکنش‌های بانکی</span>
-              <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">پاکسازی، دسته‌بندی و ارائه صورت جریان وجوه نقد به صورت خودکار</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">تحلیل تراکنش‌های بانکی</span><span class="level-badge badge-good">خوب</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">پاکسازی، دسته‌بندی و ارائه صورت جریان وجوه نقد به صورت خودکار</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">طراحی شاخص‌های پیش‌بینی</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">ساخت شاخص‌های پیش‌نگر برای روندهای بازار و رفتار سرمایه‌گذاران</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">طراحی شاخص‌های پیش‌بینی</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">ساخت شاخص‌های پیش‌نگر برای روندهای بازار و رفتار سرمایه‌گذاران</p>
           </div>
           <div class="skill-card">
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-white text-sm font-[Vazirmatn] font-medium">صنعت لیزینگ و کرادفاندینگ</span>
-              <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-            </div>
-            <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی داشبوردهای تحلیلی برای صنعت تأمین مالی جمعی و لیزینگ</p>
+            <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">صنعت لیزینگ و کرادفاندینگ</span><span class="level-badge badge-intermediate">متوسط</span></div>
+            <p class="text-xs text-zinc-500 leading-relaxed">طراحی داشبوردهای تحلیلی برای صنعت تأمین مالی جمعی و لیزینگ</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ==================== تب ۴: سیستم‌های سازمانی ==================== -->
+    <!-- تب ۴: سیستم‌های سازمانی -->
     <div class="reveal skills-tab-content" id="tab-systems">
       <div class="grid md:grid-cols-2 gap-4">
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">اتوماسیون فرآیندهای مالی</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">خودکارسازی گزارش‌گیری، تحلیل تراکنش‌ها و صورت جریان وجوه نقد</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">اتوماسیون فرآیندهای مالی</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">خودکارسازی گزارش‌گیری، تحلیل تراکنش‌ها و صورت جریان وجوه نقد</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">ربات‌های تلگرامی هوشمند</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">گزارش‌دهی خودکار، رصد کانال‌ها، تعامل با کاربران</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">ربات‌های تلگرامی هوشمند</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">گزارش‌دهی خودکار، رصد کانال‌ها، تعامل با کاربران</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">چت‌بات‌های پشتیبانی و معرفی محصول</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">دستیارهای هوشمند، ربات‌های توصیه‌گر و پاسخگویی خودکار</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">چت‌بات‌های پشتیبانی و معرفی محصول</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">دستیارهای هوشمند، ربات‌های توصیه‌گر و پاسخگویی خودکار</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">مانیتورینگ بلادرنگ بازار</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">رصد لحظه‌ای طلا، ارز، بورس کالا و حباب‌های قیمتی</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">مانیتورینگ بلادرنگ بازار</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">رصد لحظه‌ای طلا، ارز، بورس کالا و حباب‌های قیمتی</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">CRM هوشمند</span>
-            <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">تحلیل رفتار مشتریان، رصد عملکرد و طراحی سیستم‌های وفادارسازی</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">CRM هوشمند</span><span class="level-badge badge-intermediate">متوسط</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">تحلیل رفتار مشتریان، رصد عملکرد و طراحی سیستم‌های وفادارسازی</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">طراحی داشبوردهای مدیریتی</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">گزارشات فروش، عملکرد شرکت‌ها و شاخص‌های کلیدی کسب‌وکار</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">طراحی داشبوردهای مدیریتی</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">گزارشات فروش، عملکرد شرکت‌ها و شاخص‌های کلیدی کسب‌وکار</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">خودکارسازی گردش کار</span>
-            <span class="level-badge badge-good font-[Vazirmatn]">خوب</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">گزارش‌دهی، مطلب‌نویسی، پردازش داده و زمان‌بندی وظایف</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">خودکارسازی گردش کار</span><span class="level-badge badge-good">خوب</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">گزارش‌دهی، مطلب‌نویسی، پردازش داده و زمان‌بندی وظایف</p>
         </div>
         <div class="skill-card">
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-white text-sm font-[Vazirmatn] font-medium">طراحی UI/UX</span>
-            <span class="level-badge badge-intermediate font-[Vazirmatn]">متوسط</span>
-          </div>
-          <p class="text-xs text-zinc-500 font-[Vazirmatn] leading-relaxed">طراحی رابط کاربری برای داشبوردها و وب‌اپلیکیشن‌های تعاملی</p>
+          <div class="flex justify-between items-start mb-2"><span class="text-white text-sm font-medium">طراحی UI/UX</span><span class="level-badge badge-intermediate">متوسط</span></div>
+          <p class="text-xs text-zinc-500 leading-relaxed">طراحی رابط کاربری برای داشبوردها و وب‌اپلیکیشن‌های تعاملی</p>
         </div>
       </div>
     </div>
 
-    <!-- ==================== تب ۵: در حال یادگیری ==================== -->
+    <!-- تب ۵: در حال یادگیری -->
     <div class="reveal skills-tab-content" id="tab-learning">
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="skill-card text-center py-8">
-          <div class="text-5xl mb-4">⚡</div>
-          <h4 class="text-white font-bold font-[Vazirmatn] text-lg mb-2">Redis</h4>
-          <p class="text-xs text-zinc-400 font-[Vazirmatn] mb-3">Caching و In-Memory Data Store</p>
-          <span class="level-badge badge-learning font-[Vazirmatn]">در حال یادگیری</span>
+        <div class="skill-card text-center py-8 flex flex-col items-center">
+          <div class="mb-4 text-[#00bfff]"><i data-lucide="database-zap" style="width:40px;height:40px;"></i></div>
+          <h4 class="text-white font-bold text-lg mb-2">Redis</h4>
+          <p class="text-xs text-zinc-400 mb-3">Caching و In-Memory Data Store</p>
+          <span class="level-badge badge-learning">در حال یادگیری</span>
         </div>
-        <div class="skill-card text-center py-8">
-          <div class="text-5xl mb-4">📨</div>
-          <h4 class="text-white font-bold font-[Vazirmatn] text-lg mb-2">Apache Kafka</h4>
-          <p class="text-xs text-zinc-400 font-[Vazirmatn] mb-3">Event Streaming و Message Broker</p>
-          <span class="level-badge badge-learning font-[Vazirmatn]">در حال یادگیری</span>
+        <div class="skill-card text-center py-8 flex flex-col items-center">
+          <div class="mb-4 text-[#00bfff]"><i data-lucide="send" style="width:40px;height:40px;"></i></div>
+          <h4 class="text-white font-bold text-lg mb-2">Apache Kafka</h4>
+          <p class="text-xs text-zinc-400 mb-3">Event Streaming و Message Broker</p>
+          <span class="level-badge badge-learning">در حال یادگیری</span>
         </div>
-        <div class="skill-card text-center py-8">
-          <div class="text-5xl mb-4">🐳</div>
-          <h4 class="text-white font-bold font-[Vazirmatn] text-lg mb-2">Docker</h4>
-          <p class="text-xs text-zinc-400 font-[Vazirmatn] mb-3">Containerization و Deployment</p>
-          <span class="level-badge badge-learning font-[Vazirmatn]">در حال یادگیری</span>
+        <div class="skill-card text-center py-8 flex flex-col items-center">
+          <div class="mb-4 text-[#00bfff]"><i data-lucide="box" style="width:40px;height:40px;"></i></div>
+          <h4 class="text-white font-bold text-lg mb-2">Docker</h4>
+          <p class="text-xs text-zinc-400 mb-3">Containerization و Deployment</p>
+          <span class="level-badge badge-learning">در حال یادگیری</span>
         </div>
       </div>
     </div>
 
-
+  </div>
 </section>
 
-<script>
-  // حذف تابع togglePanel قبلی
-  // سیستم تب‌های جدید
-  (function() {
-    const tabButtons = document.querySelectorAll('.skills-tab-btn');
-    const tabContents = document.querySelectorAll('.skills-tab-content');
-
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const targetTab = this.getAttribute('data-tab');
-        
-        // غیرفعال کردن همه تب‌ها
-        tabButtons.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-        
-        // فعال کردن تب انتخاب‌شده
-        this.classList.add('active');
-        const targetContent = document.getElementById(targetTab);
-        if (targetContent) {
-          targetContent.classList.add('active');
-        }
-      });
-    });
-  })();
-</script>
-
-<!-- دوره‌های آموزشی -->
 <!-- دوره‌های آموزشی -->
 <section id="courses" class="py-24 border-t border-subtle relative overflow-hidden">
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
     <div class="absolute bottom-10 left-1/4 w-80 h-80 bg-[#C9A96E] rounded-full blur-[120px]"></div>
   </div>
-
-  <style>
-    .courses-layout { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
-    .courses-table-wrapper { flex: 1; min-width: 300px; }
-    .courses-table { width: 100%; border-collapse: collapse; }
-    .courses-table th { text-align: right; padding: 12px 16px; font-size: 13px; font-weight: 700; color: #C9A96E; font-family: 'Vazirmatn', sans-serif; border-bottom: 1px solid rgba(201,169,110,0.25); white-space: nowrap; }
-    .courses-table td { padding: 14px 16px; font-size: 13px; font-family: 'Vazirmatn', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.05); color: #bbb; }
-    .courses-table tr { transition: background 0.3s; }
-    .courses-table tbody tr:hover { background: rgba(201,169,110,0.03); }
-    .courses-table tbody tr:last-child td { border-bottom: none; }
-    .courses-table .course-name { color: #fff; font-weight: 600; }
-    
-    .cert-side { display: flex; flex-direction: column; gap: 20px; flex-shrink: 0; }
-    .cert-thumb { width: 220px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.35s ease; position: relative; }
-    .cert-thumb:hover { border-color: rgba(201,169,110,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.35); transform: translateY(-3px); }
-    .cert-thumb img { width: 100%; height: auto; display: block; }
-    .cert-thumb-lg { width: 260px; }
-    .cert-thumb-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 20px 12px 10px 12px; font-size: 11px; font-family: 'Vazirmatn', sans-serif; color: #ddd; text-align: center; }
-    .cert-thumb:hover .cert-thumb-label { color: #fff; }
-    
-    .cert-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.92); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 40px; backdrop-filter: blur(10px); }
-    .cert-modal.open { display: flex; }
-    .cert-modal img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
-    .cert-modal-close { position: absolute; top: 20px; left: 20px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
-    .cert-modal-close:hover { background: rgba(255,255,255,0.2); }
-    .cert-modal-close svg { width: 22px; height: 22px; color: #fff; }
-    
-    @media (max-width: 992px) {
-      .courses-layout { flex-direction: column-reverse; }
-      .cert-side { flex-direction: row; flex-wrap: wrap; }
-      .cert-thumb, .cert-thumb-lg { width: 180px; }
-    }
-  </style>
-
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="reveal flex items-center gap-4 mb-8">
-      <span class="text-xs text-[#C9A96E] tracking-widest uppercase font-[Vazirmatn]">۰۶</span>
-      <h2 class="text-3xl md:text-4xl font-bold font-[Vazirmatn]">دوره‌های آموزشی</h2>
+      <span class="text-xs text-[#C9A96E] tracking-widest uppercase">۰۶</span>
+      <h2 class="text-3xl md:text-4xl font-bold">دوره‌های آموزشی</h2>
     </div>
-
     <div class="reveal courses-layout">
-      <!-- جدول دوره‌ها -->
       <div class="courses-table-wrapper">
         <table class="courses-table">
           <thead>
-            <tr>
-              <th>دوره</th>
-              <th>مؤسسه / شرکت</th>
-              <th>مدت</th>
-              <th>سال</th>
-            </tr>
+            <tr><th>دوره</th><th>مؤسسه / شرکت</th><th>مدت</th><th>سال</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="course-name">یادگیری ماشین (Machine Learning)</td>
-              <td>DataVest</td>
-              <td>۲ ماه</td>
-              <td>۱۴۰۴</td>
-            </tr>
-            <tr>
-              <td class="course-name">پایتون مقدماتی</td>
-              <td>ایران دیجیتال</td>
-              <td>—</td>
-              <td>۱۴۰۴</td>
-            </tr>
-            <tr>
-              <td class="course-name">پایتون مالی (Financial Python)</td>
-              <td>DataVest</td>
-              <td>۳ ماه</td>
-              <td>۱۴۰۳</td>
-            </tr>
-            <tr>
-              <td class="course-name">اکسل مالی (Financial Excel)</td>
-              <td>اکو یونی</td>
-              <td>۴ ماه</td>
-              <td>۱۴۰۲</td>
-            </tr>
-            <tr>
-              <td class="course-name">ICDL</td>
-              <td>مؤسسه پژوهشگران جوان</td>
-              <td>۳ ماه</td>
-              <td>۱۳۹۷</td>
-            </tr>
+            <tr><td class="course-name">یادگیری ماشین (Machine Learning)</td><td>DataVest</td><td>۲ ماه</td><td>۱۴۰۴</td></tr>
+            <tr><td class="course-name">پایتون مقدماتی</td><td>ایران دیجیتال</td><td>—</td><td>۱۴۰۴</td></tr>
+            <tr><td class="course-name">پایتون مالی (Financial Python)</td><td>DataVest</td><td>۳ ماه</td><td>۱۴۰۳</td></tr>
+            <tr><td class="course-name">اکسل مالی (Financial Excel)</td><td>اکو یونی</td><td>۴ ماه</td><td>۱۴۰۲</td></tr>
+            <tr><td class="course-name">ICDL</td><td>مؤسسه پژوهشگران جوان</td><td>۳ ماه</td><td>۱۳۹۷</td></tr>
           </tbody>
         </table>
       </div>
-
-      <!-- مدارک کنار جدول -->
       <div class="cert-side">
-        <!-- مدرک بزرگ -->
         <div class="cert-thumb cert-thumb-lg" onclick="openCertModal('mad.png')">
           <img src="mad.png" alt="مدرک دوره یادگیری ماشین — DataVest">
-          <div class="cert-thumb-label">مدرک پایتون مقدماتی _ایران دیجیتال</div>
+          <div class="cert-thumb-label">مدرک پایتون مقدماتی — ایران دیجیتال</div>
         </div>
-        <!-- مدرک دوم -->
         <div class="cert-thumb" onclick="openCertModal('mad2.png')">
           <img src="mad2.png" alt="مدرک دوره پایتون مقدماتی — ایران دیجیتال">
-          <div class="cert-thumb-label">مدرک ICDL </div>
+          <div class="cert-thumb-label">مدرک ICDL</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- مودال نمایش مدرک -->
   <div class="cert-modal" id="certModal" onclick="closeCertModal()">
     <button class="cert-modal-close" onclick="closeCertModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -1817,7 +1227,101 @@
   </div>
 </section>
 
+<!-- ارتباط -->
+<section id="contact" class="py-24 border-t border-subtle">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <div class="reveal max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">بیایید همکاری کنیم</h2>
+      <p class="text-zinc-400 leading-relaxed mb-10">اگر به دنبال یک فرد متعهد برای پروژه‌های داده، مالی یا هوش مصنوعی هستید، خوشحال می‌شوم صحبت کنیم.</p>
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nwryfrd1743@email.com" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-[#00bfff] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition">ارسال ایمیل</a>
+        <a href="https://www.linkedin.com/in/amirhosein-nouri-fard-442370335" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition">لینکدین</a>
+        <a href="https://github.com/nourifard" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition">گیت‌هاب</a>
+      </div>
+      <div class="text-sm text-zinc-400 space-y-2 flex flex-col items-center">
+        <p class="flex items-center gap-2"><i data-lucide="phone" style="width:16px;height:16px"></i> شماره تماس: <span class="text-white">۰۹۰۳۸۰۱۹۲۱۳</span></p>
+        <p class="flex items-center gap-2"><i data-lucide="send" style="width:16px;height:16px"></i> تلگرام: <span class="text-white">Amirhosein_nuorif83@</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- فوتر -->
+<footer class="py-8 border-t border-subtle">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-zinc-600">
+    <p>ساخته‌شده توسط امیرحسین نوری‌فرد در ۱۴۰۵ ©</p>    
+  </div>
+</footer>
+
 <script>
+  lucide.createIcons();
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('hidden'); });
+  document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const target = document.querySelector(a.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden'); } }); });
+  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // اسکریپت شمارنده‌ها
+  (function() {
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = parseInt(element.getAttribute('data-duration'));
+      const startTime = performance.now();
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const currentValue = Math.floor(eased * target);
+        element.textContent = currentValue.toLocaleString('fa-IR');
+        if (progress < 1) { requestAnimationFrame(updateCounter); } else { element.textContent = target.toLocaleString('fa-IR'); }
+      }
+      requestAnimationFrame(updateCounter);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.counter-value');
+          counters.forEach(counter => { if (counter.textContent === '0' || counter.textContent === '۰') { animateCounter(counter); } });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const counterSection = document.querySelector('.stat-item')?.closest('section');
+    if (counterSection) counterObserver.observe(counterSection);
+  })();
+
+  // اسکریپت پروژه‌ها
+  function toggleCaption(captionId, btn) {
+    const caption = document.getElementById(captionId);
+    const btnText = btn.querySelector('.btn-text');
+    const isOpen = caption.classList.contains('open');
+    if (isOpen) { caption.classList.remove('open'); btn.classList.remove('active'); btnText.textContent = 'بیشتر بخوانید'; } 
+    else { caption.classList.add('open'); btn.classList.add('active'); btnText.textContent = 'بستن'; }
+  }
+
+  // اسکریپت تجربیات
+  function toggleExp(card) {
+    const wasActive = card.classList.contains('active');
+    document.querySelectorAll('.exp-card').forEach(c => c.classList.remove('active'));
+    if (!wasActive) { card.classList.add('active'); }
+  }
+
+  // اسکریپت تب‌های مهارت‌ها
+  (function() {
+    const tabButtons = document.querySelectorAll('.skills-tab-btn');
+    const tabContents = document.querySelectorAll('.skills-tab-content');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetTab = this.getAttribute('data-tab');
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        const targetContent = document.getElementById(targetTab);
+        if (targetContent) { targetContent.classList.add('active'); }
+      });
+    });
+  })();
+
+  // اسکریپت مودال دوره‌ها
   function openCertModal(imgSrc) {
     const modal = document.getElementById('certModal');
     const modalImg = document.getElementById('certModalImage');
@@ -1830,50 +1334,7 @@
     modal.classList.remove('open');
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeCertModal();
-  });
-</script>
-
-<!-- ارتباط -->
-<section id="contact" class="py-24 border-t border-subtle">
-  <div class="max-w-7xl mx-auto px-6 text-center">
-    <div class="reveal max-w-2xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 font-[Vazirmatn]">بیایید همکاری کنیم</h2>
-      <p class="text-zinc-400 leading-relaxed mb-10 font-[Vazirmatn]">اگر به دنبال یک فرد متعهد برای پروژه‌های داده، مالی یا هوش مصنوعی هستید، خوشحال می‌شوم صحبت کنیم.</p>
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <a 
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=nwryfrd1743@email.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="px-8 py-3 bg-[#00bfff] text-black font-medium text-sm rounded hover:bg-[#b8954f] transition font-[Vazirmatn]"
-        >
-        ارسال ایمیل
-        </a>
-        <a href="https://www.linkedin.com/in/amirhosein-nouri-fard-442370335" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition font-[Vazirmatn]">لینکدین</a>
-        <a href="https://github.com/nourifard" target="_blank" rel="noopener noreferrer" class="px-6 py-3 border border-zinc-600 text-white text-sm rounded hover:border-zinc-400 transition font-[Vazirmatn]">گیت‌هاب</a>
-      </div>
-      <div class="text-sm text-zinc-400 space-y-2 font-[Vazirmatn]">
-        <p>📞 شماره تماس: <span class="text-white">۰۹۰۳۸۰۱۹۲۱۳</span></p>
-        <p>💬 تلگرام: <span class="text-white">Amirhosein_nuorif83@</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- فوتر -->
-<footer class="py-8 border-t border-subtle">
-  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-zinc-600 font-[Vazirmatn]">
-   <p>ساخته‌شده توسط امیرحسین نوری‌فرد در ۱۴۰۵ ©</p>    
-  </div>
-</footer>
-
-<script>
-  lucide.createIcons();
-  document.getElementById('mobile-menu-btn').addEventListener('click', () => { document.getElementById('mobile-menu').classList.toggle('hidden'); });
-  document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { const target = document.querySelector(a.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); document.getElementById('mobile-menu').classList.add('hidden'); } }); });
-  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCertModal(); });
 </script>
 </body>
 </html>
